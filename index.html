@@ -11,8 +11,8 @@
   <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
   <title></title>
   <link rel="stylesheet" type="text/css" href="./normalize.css" />
-  <link rel="stylesheet" type="text/css" href="./layout.css" />
-  <link rel="stylesheet" type="text/css" href="./mod.css" />
+  <link rel="stylesheet" type="text/css" href="/next-cms-design-theme/theme/<% echo(theme) %>/<% echo(media) %>/layout.css" />
+  <link rel="stylesheet" type="text/css" href="/next-cms-design-theme/theme/<% echo(theme) %>/<% echo(media) %>/mod.css" />
   <script>
     (function() {
         // var protocol = location.protocol;
@@ -22,7 +22,7 @@
     }());
   </script>
   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
   <link rel="stylesheet" type="text/css" href="./chk.css" />
   <script>
     $(document).on("mobileinit", function() {
@@ -32,7 +32,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
   <script src="./chk.js"></script>
 </head>
-<body class="mod-body">
+<body>
   <div id="#page" data-role="page">
     <!-- chk-ex_panel -->
     <div data-role="panel" id="leftpanelA" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
@@ -93,8 +93,8 @@
         <form action="./" method="get">
           <div>
             <h3>Media</h3>
-            <input type="radio" name="view" value="pc" /><label for="pc">PC</label>
-            <input type="radio" name="view" value="sp" /><label for="pc">SP</label>
+            <input type="radio" name="media" value="pc" /><label for="pc">PC</label>
+            <input type="radio" name="media" value="sp" /><label for="sp">SP</label>
           </div>
           <div>
             <h3>Theme</h3>
@@ -115,7 +115,7 @@
         <a href="#leftpanelA" class="chk-button" data-inline="true">Open</a>
         <a href="#leftpanelB" class="chk-button" data-inline="true">Open</a>
       </div>
-      <div id="chk-content" data-enhance="false">
+      <div id="chk-content" class="mod-body" data-enhance="false">
 CONTENTS
       </div>
     </div>
