@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<head>
+  <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+  <meta charset="UTF-8" />
+  <meta property="og:site_name" content="site_name" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="" />
+  <link rel="canonical" href="" />
+
+  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./normalize.css" />
+  <link rel="stylesheet" type="text/css" href="./layout.css" />
+  <link rel="stylesheet" type="text/css" href="./mod.css" />
+  <script>
+    (function() {
+        // var protocol = location.protocol;
+        var protocol = 'http:';
+        document.write('<script src="' + protocol + '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">\x3C/script>');
+        document.write('<script src="' + protocol + '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js">\x3C/script>');
+    }());
+  </script>
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
+  <link rel="stylesheet" type="text/css" href="./chk.css" />
+  <script>
+    $(document).on("mobileinit", function() {
+      $.mobile.ignoreContentEnabled = true;
+    });
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+</head>
+<body class="mod-body">
+  <div id="#page" data-role="page">
+    <div data-role="panel" id="leftpanel" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
+      <a href="#page" data-rel="close">Close panel</a>
+      <div id="chk-panel" data-enhance="false">
+
+      </div>
+    </div>
+
+    <div data-role="content">
+      <a href="#leftpanel" data-inline="true">Open panel</a>
+      <div id="chk-content" data-enhance="false">
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>
