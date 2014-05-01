@@ -22,6 +22,7 @@
     }());
   </script>
   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="./chk.css" />
   <script>
     $(document).on("mobileinit", function() {
@@ -29,20 +30,78 @@
     });
   </script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+  <script src="./chk.js"></script>
 </head>
 <body class="mod-body">
   <div id="#page" data-role="page">
-    <div data-role="panel" id="leftpanel" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
-      <a href="#page" data-rel="close">Close panel</a>
-      <div id="chk-panel" data-enhance="false">
-
+    <!-- chk-ex_panel -->
+    <div data-role="panel" id="leftpanelA" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
+      <div id="chk-ex_panel" class="chk-panel" data-enhance="false">
+        <a href="#page" class="chk-button" data-rel="close">Close</a>
+        <div>
+          <h3 class="chk-accordion_h">ex-style</h3>
+          <ul>
+            <li><input type="radio" name="ex-style" value="01A1" /><label for="01A1">01A1</label></li>
+            <li><input type="radio" name="ex-style" value="01A2" /><label for="01A2">01A2</label></li>
+            <li><input type="radio" name="ex-style" value="01A3" /><label for="01A3">01A3</label></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="chk-accordion_h">ex-style</h3>
+          <ul>
+            <li><input type="radio" name="ex-style" value="01A1" /><label for="01A1">01A1</label></li>
+            <li><input type="radio" name="ex-style" value="01A2" /><label for="01A2">01A2</label></li>
+            <li><input type="radio" name="ex-style" value="01A3" /><label for="01A3">01A3</label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- chk-param_panel -->
+    <div data-role="panel" id="leftpanelB" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
+      <div id="chk-param_panel" class="chk-panel" data-enhance="false">
+        <a href="#page" class="chk-button" data-rel="close">Close</a>
+        <div>
+          <h3>Media</h3>
+          <input type="radio" name="view" value="pc" /><label for="pc">PC</label>
+          <input type="radio" name="view" value="sp" /><label for="pc">SP</label>
+        </div>
+        <div>
+          <h3>Switchable</h3>
+          <input type="checkbox" name="switchable" value="true" /><label for="switchable">部品挿入初期状態</label>
+        </div>
+        <div>
+          <h3>Anchor</h3>
+          <input type="radio" name="anchor" value="none" /><label for="none">none</label>
+          <input type="radio" name="anchor" value="link" /><label for="link">link</label>
+          <input type="radio" name="anchor" value="hover" /><label for="hover">hover</label>
+        </div>
+        <div>
+          <h3>RTE FontSize</h3>
+          <input type="text">
+        </div>
+        <div>
+          <h3>FlowStep</h3>
+          <input type="text">
+        </div>
+        <div>
+          <h3>Theme</h3>
+          <input type="text">
+        </div>
+        <div>
+          <h3>PartDirectory</h3>
+          <input type="text">
+        </div>
       </div>
     </div>
 
+    <!-- chk-content -->
     <div data-role="content">
-      <a href="#leftpanel" data-inline="true">Open panel</a>
+      <div class="chk-buttons">
+        <a href="#leftpanelA" class="chk-button" data-inline="true">Open</a>
+        <a href="#leftpanelB" class="chk-button" data-inline="true">Open</a>
+      </div>
       <div id="chk-content" data-enhance="false">
-        
+CONTENTS
       </div>
     </div>
   </div>
