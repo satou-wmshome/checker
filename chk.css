@@ -58,14 +58,11 @@
   margin: 0;
   padding: 10px 10px 20px;
   background: linear-gradient(to bottom, #2b2b2b, #333333);
+  font-size: 12px;
 }
 .chk-accordion li {
   margin: 0 0 3px;
   list-style: none;
-}
-.chk-accordion input[type="text"],
-.chk-accordion select {
-  font-size: 12px;
 }
 .chk-accordion input[type="checkbox"],
 .chk-accordion input[type="radio"] {
