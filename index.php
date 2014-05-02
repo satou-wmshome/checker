@@ -1,11 +1,19 @@
 <?php
   include_once( "Skinny.php" );
+	require_once( "./assets/Mobile_Detect.php" );
 
+	$detect = new Mobile_Detect;
 	$theme_dir = "/var/www/html/next-cms-design-theme/theme/";
 	$part_dir = "";
 	$out = array();
 
-	$media = "pc";
+	$out[ "mobile_flg" ] = false;
+	if( $detect->isMobile() ) {
+		$out[ "mobile_flg" ] = true;
+		$media = "sp";
+	} else {
+		$media = "pc";
+	}
 	if( isset( $_GET[ "media" ] ) ) {
 		$media = htmlspecialchars( $_GET[ "media" ] );
 	}

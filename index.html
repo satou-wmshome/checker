@@ -8,6 +8,10 @@
   <meta property="og:url" content="" />
   <link rel="canonical" href="" />
 
+	<% if(media,==,"sp") %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="disparea" content="vga" />
+	<% /if %>
   <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
   <title></title>
   <link rel="stylesheet" type="text/css" href="./normalize.css" />
@@ -21,17 +25,25 @@
         document.write('<script src="' + protocol + '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js">\x3C/script>');
     }());
   </script>
+	<% if(mobile_flg,==,true) %>
+  	<link rel="stylesheet" type="text/css" href="assets/snap.css" />
+  	<script src="assets/snap.min.js"></script>
+		<script>
+			$(function() {
+				var w = window.innerWidth ? window.innerWidth: $(window).width();
+				w = w * 0.7;
+				mobileInit(w);
+			});
+		</script>
+	<% /if %>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
-  <link rel="stylesheet" type="text/css" href="assets/snap.css" />
   <link rel="stylesheet" type="text/css" href="assets/chk.css" />
-  <script src="assets/snap.min.js"></script>
   <script src="assets/chk.js"></script>
 </head>
 <body>
 
   <div class="snap-drawers">
     <div id="chk-leftpanel" class="snap-drawer snap-drawer-left">
-      <div class="chk-close_button">Close</div>
       <!-- chk-ex_panel -->
       <div id="chk-ex_panel" class="chk-panel">
         <div>
@@ -85,7 +97,7 @@
   </div>
 
   <div id="chk-content" class="snap-content">
-    <div class="chk-open_button">Open</div>
+    <div class="chk-button"></div>
     <div class="mod-body">
 CONTENTS
     </div>
