@@ -21,23 +21,19 @@
         document.write('<script src="' + protocol + '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js">\x3C/script>');
     }());
   </script>
-  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
-  <link rel="stylesheet" type="text/css" href="./chk.css" />
-  <script>
-    $(document).on("mobileinit", function() {
-      $.mobile.ignoreContentEnabled = true;
-    });
-  </script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
-  <script src="./chk.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/snap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/chk.css" />
+  <script src="assets/snap.min.js"></script>
+  <script src="assets/chk.js"></script>
 </head>
 <body>
-  <div id="#page" data-role="page">
-    <!-- chk-ex_panel -->
-    <div data-role="panel" id="leftpanelA" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
-      <div id="chk-ex_panel" class="chk-panel" data-enhance="false">
-        <a href="#page" class="chk-button" data-rel="close">Close</a>
+
+  <div class="snap-drawers">
+    <div id="chk-leftpanel" class="snap-drawer snap-drawer-left">
+      <div class="chk-close_button">Close</div>
+      <!-- chk-ex_panel -->
+      <div id="chk-ex_panel" class="chk-panel">
         <div>
           <h3 class="chk-accordion_h">Ex-style</h3>
           <ul class="chk-accordion">
@@ -86,8 +82,17 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div id="chk-content" class="snap-content">
+    <div class="chk-open_button">Open</div>
+    <div class="mod-body">
+CONTENTS
+    </div>
+  </div>
+
     <!-- chk-param_panel -->
-    <div data-role="panel" id="leftpanelB" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
+ <!--    <div data-role="panel" id="leftpanelB" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
       <div id="chk-param_panel" class="chk-panel" data-enhance="false">
         <a href="#page" class="chk-button" data-rel="close">Close</a>
         <form action="./" method="get">
@@ -107,18 +112,7 @@
           <input type="submit" value="送信">
         </form>
       </div>
-    </div>
+    </div> -->
 
-    <!-- chk-content -->
-    <div data-role="content">
-      <div class="chk-buttons">
-        <a href="#leftpanelA" class="chk-button" data-inline="true">Open</a>
-        <a href="#leftpanelB" class="chk-button" data-inline="true">Open</a>
-      </div>
-      <div id="chk-content" class="mod-body" data-enhance="false">
-CONTENTS
-      </div>
-    </div>
-  </div>
 </body>
 </html>

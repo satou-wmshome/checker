@@ -1,27 +1,43 @@
-.ui-overlay-a, .ui-page-theme-a,
-.ui-page-theme-a .ui-panel-wrapper {
-	background-color: transparent;
+.snap-drawers {
+  background: #333333;
 }
-.ui-content {
-  padding: 0;
+.snap-drawer {
+  width: 230px;
 }
-.ui-panel-inner {
-  padding: 0;
+
+#chk-content {
+  background: #ffffff;
+  box-shadow: -3px 0 6px rgba(0, 0, 0, 0.6);
 }
-#leftpanelA,
-#leftpanelB {
+
+#chk-leftpanel {
   background: #333333;
 }
 
-/*.chk-panel*/
-.chk-panel {
-  overflow-y: auto;
-  color: #ffffff;
-  text-shadow: 0px -1px 0 rgba(0, 0, 0, 1);
-  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-}
-.chk-panel .chk-button {
+.chk-open_button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
   display: block;
+  margin: 0 0 10px;
+  padding: 0;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #303030;
+  border-radius: 23px;
+  background: linear-gradient(to bottom, #3f3f3f, #333333);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0px -1px 0 rgba(0, 0, 0, 1);
+  font-weight: normal;
+  font-size: 12px;
+  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  cursor: pointer;
+}
+
+.chk-close_button {
   margin: 10px 10px 20px auto;
   padding: 8px;
   width: 50px;
@@ -34,9 +50,14 @@
   text-decoration: none;
   font-weight: normal;
   font-size: 12px;
+  cursor: pointer;
 }
-.chk-panel .chk-button:hover {
+
+.chk-panel {
+  overflow-y: auto;
   color: #ffffff;
+  text-shadow: 0px -1px 0 rgba(0, 0, 0, 1);
+  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
 /*#chk-ex_panel*/
@@ -73,7 +94,7 @@
 }
 .chk-accordion input[type="checkbox"],
 .chk-accordion input[type="radio"] {
-  margin: 0 10px 0 0;
+  margin: 0 10px 2px 0;
   vertical-align: middle;
 }
 .chk-accordion label {
@@ -86,36 +107,4 @@
 /*#chk-param_panel*/
 #chk-param_panel {
   overflow-y: auto;
-}
-
-/*chk-buttons*/
-.chk-buttons {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-}
-.chk-buttons .chk-button {
-  display: block;
-  margin: 0 0 10px;
-  padding: 0;
-  width: 45px;
-  height: 45px;
-  border: 1px solid #888888;
-  border-radius: 23px;
-  background: linear-gradient(to bottom, #3f3f3f, #333333);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: 0px -1px 0 rgba(0, 0, 0, 1);
-  font-weight: normal;
-  font-size: 12px;
-  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-}
-.chk-buttons .chk-button:hover {
-  color: #ffffff;
-}
-
-/*#chk-content*/
-#chk-content {
 }
