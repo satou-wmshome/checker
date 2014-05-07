@@ -1,36 +1,28 @@
 <?php
   include_once( "Skinny.php" );
 	require_once( "./assets/Mobile_Detect.php" );
+	require_once( "./assets/simple_html_dom.php" );
+	require_once( "./assets/theme.php" );
 
-	$detect = new Mobile_Detect;
-	$theme_dir = "/var/www/html/next-cms-design-theme/theme/";
-	$part_dir = "";
 	$out = array();
 
-	$out[ "mobile_flg" ] = false;
-	if( $detect->isMobile() ) {
-		$out[ "mobile_flg" ] = true;
-		$media = "sp";
-	} else {
-		$media = "pc";
-	}
-	if( isset( $_GET[ "media" ] ) ) {
-		$media = htmlspecialchars( $_GET[ "media" ] );
-	}
-	$out[ "media" ] = $media;
+	$detect = new Mobile_Detect;
+	$mobile_flg = $detect->isMobile() ? true : false ;
+	$out[ "mobile_flg" ] = $mobile_flg;
 
-	$theme = "theme1-1";
-	if( isset( $_GET[ "theme" ] ) ) {
-		$theme = htmlspecialchars( $_GET[ "theme" ] );
-	}
-	$out[ "theme" ] = $theme;
+	$theme = new Theme( $mobile_flg );
+	$out[ "media" ] = $theme->media();
+	$out[ "layout_css" ] = $theme->layoutCssPath();
+	$out[ "mod_css" ] = $theme->modCssPath();
+
 
 	$part = "part";
 	if( isset( $_GET[ "part" ] ) ) {
 		$part = htmlspecialchars( $_GET[ "part" ] );
 	}
 
-	$layout_txt = file_get_contents( sprintf( "%s%s/%s/layout.txt", $theme_dir, $theme, $media ) );
+//	$layout_txt = file_get_contents( sprintf( "%s%s/%s/layout.txt", $theme_dir, $theme, $media ) );
 
+	echo "<pre>";var_dump($out);echo "</pre>";
   $Skinny->SkinnyDisplay( "index.html", $out );
 ?>
