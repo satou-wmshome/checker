@@ -10,7 +10,9 @@ class Theme {
 		$this->setName();
 		$this->setMedia( $mobile_flg );
 		$this->setFilePath();
-//		echo "<pre>";var_dump($this);echo "</pre>";
+		if( DEBUG ) {
+			echo "<pre>";var_dump($this);echo "</pre>";
+		}
 	}
 
 	private function setName() {
