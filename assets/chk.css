@@ -1,17 +1,15 @@
-.snap-drawers {
-  background: #333333;
-}
-.snap-drawer {
-  width: 230px;
-}
-
-#chk-content {
-  background: #ffffff;
-  box-shadow: -3px 0 6px rgba(0, 0, 0, 0.6);
+body {
+  padding: 0;
+  margin: 0;
 }
 
 #chk-leftpanel {
   background: #333333;
+}
+
+#chk-content {
+  background: #ffffff;
+  /*box-shadow: -3px 0 6px rgba(0, 0, 0, 0.6);*/
 }
 
 .chk-button {
@@ -46,7 +44,6 @@
 
 /*#chk-ex_panel*/
 #chk-ex_panel {
-  overflow-y: auto;
 }
 #chk-ex_panel div {
   margin: -1px 0 0;
@@ -90,5 +87,18 @@
 
 /*#chk-param_panel*/
 #chk-param_panel {
+  overflow-y: auto;
+}
+
+/*PCのみ*/
+.chk-drawers-pc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 30px 0 0;
+  width: 230px;
+  background: #333333;
+  box-shadow: 3px 0 2px rgba(0, 0, 0, 0.4);
   overflow-y: auto;
 }
