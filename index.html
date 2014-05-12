@@ -25,6 +25,14 @@
         document.write('<script src="' + protocol + '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js">\x3C/script>');
     }());
   </script>
+	<% if(media,==,"sp") %>
+		<script src="/cms/_master/common/js/pc.js"></script>
+		<script src="/cms/_master/common/js/pc2.js"></script>
+	<% /if %>
+	<% if(media,==,"sp") %>
+		<script src="/cms/_master/common/js/sp.js"></script>
+		<script src="/cms/_master/common/js/sp2.js"></script>
+	<% /if %>
 	<% if(mobile_flg,==,true) %>
   	<link rel="stylesheet" type="text/css" href="assets/snap.css" />
   	<script src="assets/snap.min.js"></script>
@@ -42,7 +50,7 @@
 </head>
 <body>
 
-  <div class="snap-drawers">
+  <div class="snap-drawers<% if(mobile_flg,==,false) %> chk-drawers-pc<% /if %>">
     <div id="chk-leftpanel" class="snap-drawer snap-drawer-left">
       <!-- chk-ex_panel -->
       <div id="chk-ex_panel" class="chk-panel">
