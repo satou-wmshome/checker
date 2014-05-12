@@ -41,7 +41,7 @@
 	unset( $html );
 
 	if( DEBUG ) {
-		echo "<style>pre { font-size:12px;line-height:1.4; }</style>";
+		echo "<style>pre { font-size:12px;line-height:1.3; }</style>";
 		echo "<pre>";var_dump($out);echo "</pre>";
 	} else {
   	$Skinny->SkinnyDisplay( "index.html", $out );

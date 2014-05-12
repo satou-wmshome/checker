@@ -10,7 +10,7 @@ class Part {
 		$this->setFilePath();
 		$this->setPartsData();
 		if( DEBUG ) {
-	    echo "<pre>";var_dump($this);echo "</pre>";
+//	    echo "<pre>";var_dump($this);echo "</pre>";
 		}
 	}
 
@@ -88,7 +88,7 @@ class Part {
 		$list = explode( "-", $_GET[ $area ] );
 		if( is_numeric( $list[0] ) ) {
 			$st = intval( $list[0] );
-			$ed = ( !is_null( $list[1] ) && is_numeric( $list[1]) ) ? intval( $list[1] ) : 10000;
+			$ed = ( count( $list ) > 1 && !is_null( $list[1] ) && is_numeric( $list[1]) ) ? intval( $list[1] ) : 10000;
 			foreach( $this->parts[ "part_data" ][ $area ] as $key => $val ) {
 				if( is_numeric( $val[ "no" ] ) ) {
 					$part_no = intval( $val[ "no" ] );
@@ -119,14 +119,34 @@ class Part {
 		return $res;
 	}
 
+	private function keyWordSerch( $obj ) {
+		$res = $obj;
+		if( isset( $_GET[ "keyword" ] ) && !is_null( $obj ) ) {
+			$tmp = null;
+			$list = explode( "|", htmlspecialchars( $_GET[ "keyword" ] ) );
+			foreach( $list as $word ) {
+				foreach( $obj as  $key => $val ) {
+					$pos = strpos( $val[ "tmpl" ], $word );
+					if( $pos ) {
+						$tmp[ $key ] = $val;
+					}
+				}
+			}
+			$res = $tmp;
+		}
+		return $res;
+	}
+
 	public function partData( $area ) {
 		$res = null;
 		if( array_key_exists( $area, $this->parts[ "part_data" ] ) ) {
-			if( !isset( $_GET[ $area ] ) || is_null( $_GET[ $area ] ) ) {
-				$res = $this->parts[ "part_data" ][ $area ];
+			if( isset( $_GET[ $area ] ) && !is_null( $_GET[ $area ] ) ) {
+				$tmp = $this->selectParts( $area );
 			} else {
-				$res = $this->selectParts( $area );
+				$tmp = $this->parts[ "part_data" ][ $area ];
 			}
+			$tmp = $this->keyWordSerch( $tmp ); 
+			$res = $tmp;
 		}
 		return $res;
 	}
