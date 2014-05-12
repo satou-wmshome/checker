@@ -23,22 +23,25 @@
 	$parts = new Part;
 	$parts_tmpl = array();
 	foreach( $area_array as $area ) {
-		$tmp = $parts->partData( $area );
-		$parts_tmpl[ $area ] = null;
-		foreach( $tmp as $val) {
-			$label = "";
-			if( true ) {
-				$label = sprintf( "<span>[%s] %s</span>\n", $val[ "json" ][ "data-parts-name" ], $val[ "json" ][ "name" ] );
+		$list = $parts->partData( $area );
+		if( !is_null( $list ) ) {
+			$parts_tmpl[ $area ] = null;
+			foreach( $list as $val) {
+				$label = "";
+				if( true ) {
+					$label = sprintf( "<span>[%s] %s</span>\n", $val[ "json" ][ "data-parts-name" ], $val[ "json" ][ "name" ] );
+				}
+				$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
 			}
-			$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
+			$html->find( "[data-cms-contents*=page-". $area. "]", 0 )->innertext = $parts_tmpl[ $area ];
 		}
-		$html->find( "[data-cms-contents*=page-". $area. "]", 0 )->innertext = $parts_tmpl[ $area ];
 	}
 	$out[ "html" ] = $html->outertext;
 	$html->clear();
 	unset( $html );
 
 	if( DEBUG ) {
+		echo "<style>pre { font-size:12px;line-height:1.4; }</style>";
 		echo "<pre>";var_dump($out);echo "</pre>";
 	} else {
   	$Skinny->SkinnyDisplay( "index.html", $out );

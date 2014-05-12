@@ -66,14 +66,18 @@ class Part {
 
 	private function selectParts( $area ) {
 		$res = null;
-		if( $_GET[ $area ] !== "0" ) {
-			switch( $_GET[ "selectmethod" ] ) {
-				case "r":
-					$res = $this->selectPartsRange( $area );
-					break;
-				case "e":
-					$res = $this->selectPartsExtraction( $area );
-					break;
+		if( isset( $_GET[ "selectmethod" ] ) ) {
+			if( $_GET[ $area ] !== "0" ) {
+				switch( $_GET[ "selectmethod" ] ) {
+					case "r":
+						$res = $this->selectPartsRange( $area );
+						break;
+					case "e":
+						$res = $this->selectPartsExtraction( $area );
+						break;
+					default:
+						break;
+				}
 			}
 		}
 		return $res;
@@ -81,14 +85,16 @@ class Part {
 
 	private function selectPartsRange( $area ) {
 		$res = null;
-		$tmp = explode( "-", $_GET[ $area ] );
-		$st = intval( $tmp[0] );
-		$ed = !empty( $tmp[1] ) ? intval( $tmp[1] ) : 10000;
-		foreach( $this->parts[ "part_data" ][ $area ] as $key => $val ) {
-			if( is_numeric( $val[ "no" ] ) ) {
-				$part_no = intval( $val[ "no" ] );
-				if(  $part_no >= $st && $part_no <= $ed ) {
-					$res[ $key ] = $val;
+		$list = explode( "-", $_GET[ $area ] );
+		if( is_numeric( $list[0] ) ) {
+			$st = intval( $list[0] );
+			$ed = ( !is_null( $list[1] ) && is_numeric( $list[1]) ) ? intval( $list[1] ) : 10000;
+			foreach( $this->parts[ "part_data" ][ $area ] as $key => $val ) {
+				if( is_numeric( $val[ "no" ] ) ) {
+					$part_no = intval( $val[ "no" ] );
+					if(  $part_no >= $st && $part_no <= $ed ) {
+						$res[ $key ] = $val;
+					}
 				}
 			}
 		}
@@ -96,7 +102,21 @@ class Part {
 	}
 
 	private function selectPartsExtraction( $area ) {
-// ##########
+		$res = null;
+		$list = explode( ",", $_GET[ $area ] );
+		foreach( $list as $num ) {
+			if( is_numeric( $num ) ) {
+				$num = intval( $num );
+				foreach( $this->parts[ "part_data" ][ $area ] as $key => $val ) {
+					if( is_numeric( $val[ "no" ] ) ) {
+						if( intval( $val[ "no" ] ) === $num ) {
+							$res[ $key ] = $val;
+						}
+					}
+				}
+			}
+		}
+		return $res;
 	}
 
 	public function partData( $area ) {
