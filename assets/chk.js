@@ -8,6 +8,8 @@ $(function() {
     var panel_id = '#' + $(this).attr('data-chk-tab');
     $('.chk-panel').css('display', 'none');
     $(panel_id).css('display', 'block');
+    $('.chk-tabs').children('li').removeClass('on');
+    $(this).addClass('on');
   });
 
   $('.chk-accordion_h').on('click', function() {

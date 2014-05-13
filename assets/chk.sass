@@ -6,9 +6,46 @@ body
 
 #chk-leftpanel
   background: #333333
+  *
+    box-sizing: border-box
+    font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
 
 #chk-content
   background: #ffffff
+
+.chk-tabs
+  margin: 0
+  padding: 0 0 20px
+  text-align: center
+  font-size: 12px
+  box-sizing: border-box
+  text-shadow: 0px -1px 0 rgba(0, 0, 0, 1)
+  *
+    margin: 0
+    padding: 0
+  li
+    color: #ffffff
+    list-style: none
+    background: #333333
+    background: linear-gradient(to bottom, #3f3f3f, #333333)
+    border: 1px solid #888888
+    display: inline-block
+    width: 70px
+    height: 25px
+    padding: 2px 0 0 0
+    margin: 0 0 0 -1px
+    cursor: pointer
+    &:first-child
+      margin: 0
+      border-top-left-radius: 3px
+      border-bottom-left-radius: 3px
+    &:last-child
+      border-top-right-radius: 3px
+      border-bottom-right-radius: 3px
+  .on
+    background: #666666
+    background: linear-gradient(to bottom, #555555, #666666)
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) inset
 
 .chk-button
   position: fixed
@@ -31,12 +68,14 @@ body
   font-size: 12px
   font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
   cursor: pointer
+  box-sizing: border-box
 
 .chk-panel
+  margin: 0
+  padding: 0
   overflow-y: auto
   color: #ffffff
   text-shadow: 0px -1px 0 rgba(0, 0, 0, 1)
-  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
   *
     margin: 0
     padding: 0
@@ -80,6 +119,7 @@ body
 
 // #chk-param_panel
 #chk-param_panel
+  display: none
 
 // PCのみ
 .chk-drawers-pc

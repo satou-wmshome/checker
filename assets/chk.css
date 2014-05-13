@@ -9,42 +9,64 @@ body {
 #chk-leftpanel {
   background: #333333;
 }
+/* line 9, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-leftpanel * {
+  box-sizing: border-box;
+  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
 
-/* line 10, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 13, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-content {
   background: white;
 }
 
-/* line 13, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 16, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-tabs {
   margin: 0;
   padding: 0 0 20px;
   text-align: center;
+  font-size: 12px;
+  box-sizing: border-box;
+  text-shadow: 0px -1px 0 black;
 }
-/* line 17, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 23, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+.chk-tabs * {
+  margin: 0;
+  padding: 0;
+}
+/* line 26, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-tabs li {
+  color: white;
   list-style: none;
+  background: #333333;
+  background: linear-gradient(to bottom, #3f3f3f, #333333);
   border: 1px solid #888888;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.6);
   display: inline-block;
   width: 70px;
   height: 25px;
-  padding: 0;
-  margin: 0;
+  padding: 2px 0 0 0;
+  margin: 0 0 0 -1px;
   cursor: pointer;
 }
-/* line 27, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 38, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-tabs li:first-child {
+  margin: 0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 30, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 42, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-tabs li:last-child {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+/* line 45, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+.chk-tabs .on {
+  background: #666666;
+  background: linear-gradient(to bottom, #555555, #666666);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) inset;
+}
 
-/* line 34, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 50, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-button {
   position: fixed;
   top: 50px;
@@ -66,30 +88,31 @@ body {
   font-size: 12px;
   font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-/* line 56, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 73, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel {
+  margin: 0;
+  padding: 0;
   overflow-y: auto;
   color: white;
   text-shadow: 0px -1px 0 black;
-  font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
-/* line 61, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 79, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel * {
   margin: 0;
   padding: 0;
-  list-style: none;
 }
-/* line 65, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 82, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel > div {
   margin: -1px 0 0;
 }
-/* line 67, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 84, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel > div:first-child {
   margin: 0;
 }
-/* line 69, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 86, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel h3 {
   position: relative;
   z-index: 1;
@@ -101,43 +124,43 @@ body {
   font-weight: normal;
   font-size: 14px;
 }
-/* line 79, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 96, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel h3 + div {
   margin: 0;
-  padding: 10px 10px 25px;
+  padding: 10px 10px 20px;
 }
-/* line 82, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 99, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel h3 + div li {
   margin: 0 0 3px;
   list-style: none;
 }
-/* line 86, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 103, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel input[type="checkbox"], .chk-panel input[type="radio"] {
   margin: 0 10px 2px 0;
   vertical-align: middle;
 }
-/* line 90, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 107, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel label {
   display: inline;
   margin: 0;
   font-size: 12px;
   cursor: pointer;
 }
-/* line 95, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 112, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel .chk-accordion_h {
   cursor: pointer;
 }
-/* line 97, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 114, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-panel .chk-accordion {
   background: linear-gradient(to bottom, #2b2b2b, #333333);
 }
 
-/* line 104, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 121, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel {
   display: none;
 }
 
-/* line 108, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 125, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 .chk-drawers-pc {
   position: fixed;
   top: 0;
