@@ -14,7 +14,7 @@
 	<% /if %>
   <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
   <title></title>
-  <link rel="stylesheet" type="text/css" href="./normalize.css" />
+  <link rel="stylesheet" type="text/css" href="../common/normalize.css" />
   <link rel="stylesheet" type="text/css" href="<% echo(layout_css) %>" />
   <link rel="stylesheet" type="text/css" href="<% echo(mod_css) %>" />
   <script>
@@ -25,13 +25,13 @@
         document.write('<script src="' + protocol + '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js">\x3C/script>');
     }());
   </script>
-	<% if(media,==,"sp") %>
-		<script src="/cms/_master/common/js/pc.js"></script>
-		<script src="/cms/_master/common/js/pc2.js"></script>
+	<% if(media,==,"pc") %>
+		<script src="../common/js/pc.js"></script>
+		<script src="../common/js/pc2.js"></script>
 	<% /if %>
 	<% if(media,==,"sp") %>
-		<script src="/cms/_master/common/js/sp.js"></script>
-		<script src="/cms/_master/common/js/sp2.js"></script>
+		<script src="../common/js/sp.js"></script>
+		<script src="../common/js/sp2.js"></script>
 	<% /if %>
 	<% if(mobile_flg,==,true) %>
   	<link rel="stylesheet" type="text/css" href="assets/snap.css" />
@@ -50,17 +50,26 @@
 </head>
 <body>
 
-  <div class="snap-drawers<% if(mobile_flg,==,false) %> chk-drawers-pc<% /if %>">
-    <div id="chk-leftpanel" class="snap-drawer snap-drawer-left">
+  <div id="chk-leftpanel" class="snap-drawers<% if(mobile_flg,==,false) %> chk-drawers-pc<% /if %>">
+    <div class="snap-drawer snap-drawer-left">
+      <% if(mobile_flg,==,false) %>
+        <div>-x-</div>
+      <% /if %>
+      <ul class="chk-tabs">
+        <li class="chk-tab-ex" data-chk-tab="chk-ex_panel">EX</li>
+        <li class="chk-tab-param" data-chk-tab="chk-param_panel">Settings</li>
+      </ul>
       <!-- chk-ex_panel -->
       <div id="chk-ex_panel" class="chk-panel">
         <div>
           <h3 class="chk-accordion_h">Ex-style</h3>
-          <ul class="chk-accordion">
-            <li><input type="radio" name="ex-style" value="01A1" /><label for="01A1">01A1</label></li>
-            <li><input type="radio" name="ex-style" value="01A2" /><label for="01A2">01A2</label></li>
-            <li><input type="radio" name="ex-style" value="01A3" /><label for="01A3">01A3</label></li>
-          </ul>
+          <div class="chk-accordion">
+            <ul>
+              <li><input type="radio" name="ex-style" value="01A1" /><label for="01A1">01A1</label></li>
+              <li><input type="radio" name="ex-style" value="01A2" /><label for="01A2">01A2</label></li>
+              <li><input type="radio" name="ex-style" value="01A3" /><label for="01A3">01A3</label></li>
+            </ul>
+          </div>
         </div>
         <div>
           <h3 class="chk-accordion_h">Switchable</h3>
@@ -70,11 +79,13 @@
         </div>
         <div>
           <h3 class="chk-accordion_h">Anchor</h3>
-          <ul class="chk-accordion">
-            <li><input type="radio" name="anchor" value="none" /><label for="none">none</label></li>
-            <li><input type="radio" name="anchor" value="link" /><label for="link">link</label></li>
-            <li><input type="radio" name="anchor" value="hover" /><label for="hover">hover</label></li>
-          </ul>
+          <div class="chk-accordion">
+            <ul>
+              <li><input type="radio" name="anchor" value="none" /><label for="none">none</label></li>
+              <li><input type="radio" name="anchor" value="link" /><label for="link">link</label></li>
+              <li><input type="radio" name="anchor" value="hover" /><label for="hover">hover</label></li>
+            </ul>
+          </div>
         </div>
         <div>
           <h3 class="chk-accordion_h">RTE FontSize</h3>
@@ -101,6 +112,33 @@
           </div>
         </div>
       </div>
+      <!-- chk-param_panel -->
+      <div id="chk-param_panel" class="chk-panel">
+        <form action="./" method="get">
+          <div>
+            <h3>Media</h3>
+            <div>
+              <input type="radio" name="media" value="pc" /><label for="pc">PC</label>
+              <input type="radio" name="media" value="sp" /><label for="sp">SP</label>
+            </div>
+          </div>
+          <div>
+            <h3>Theme</h3>
+            <div>
+              <input type="text" name="theme" />
+            </div>
+          </div>
+          <div>
+            <h3>PartDirectory</h3>
+            <div>
+              <input type="text" name="part" />
+            </div>
+          </div>
+          <div>
+            <input type="submit" value="送信">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -110,29 +148,6 @@
 			<% echo(html) %>
     </div>
   </div>
-
-    <!-- chk-param_panel -->
- <!--    <div data-role="panel" id="leftpanelB" data-position="left" data-display="overlay" data-position-fixed="true" data-dismissible="false">
-      <div id="chk-param_panel" class="chk-panel" data-enhance="false">
-        <a href="#page" class="chk-button" data-rel="close">Close</a>
-        <form action="./" method="get">
-          <div>
-            <h3>Media</h3>
-            <input type="radio" name="media" value="pc" /><label for="pc">PC</label>
-            <input type="radio" name="media" value="sp" /><label for="sp">SP</label>
-          </div>
-          <div>
-            <h3>Theme</h3>
-            <input type="text" name="theme" />
-          </div>
-          <div>
-            <h3>PartDirectory</h3>
-            <input type="text" name="part" />
-          </div>
-          <input type="submit" value="送信">
-        </form>
-      </div>
-    </div> -->
 
 </body>
 </html>

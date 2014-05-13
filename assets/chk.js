@@ -1,8 +1,20 @@
 $(function() {
+
+  var h = window.innerHeight ? window.innerHeight: $(window).height();
+  $('#chk-leftpanel').css('height', h);
+  $('.chk-panel').css('height', h - 100);
+
+  $('.chk-tabs').children('li').on('click', function() {
+    var panel_id = '#' + $(this).attr('data-chk-tab');
+    $('.chk-panel').css('display', 'none');
+    $(panel_id).css('display', 'block');
+  });
+
   $('.chk-accordion_h').on('click', function() {
     $(this).next().slideToggle();
     $(this).toggleClass("open");
   });
+
 });
 
 function mobileInit(w) {
