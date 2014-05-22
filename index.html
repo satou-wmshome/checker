@@ -36,13 +36,6 @@
 	<% if(mobile_flg,==,true) %>
   	<link rel="stylesheet" type="text/css" href="assets/snap.css" />
   	<script src="assets/snap.min.js"></script>
-		<script>
-			$(function() {
-				var w = window.innerWidth ? window.innerWidth: $(window).width();
-				w = w * 0.7;
-				mobileInit(w);
-			});
-		</script>
 	<% /if %>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
   <link rel="stylesheet" type="text/css" href="assets/chk.css" />
@@ -50,7 +43,7 @@
 </head>
 <body>
 
-  <div id="chk-leftpanel" class="snap-drawers<% if(mobile_flg,==,false) %> chk-drawers-pc<% /if %>">
+  <div id="chk-leftpanel" class="snap-drawers <% if(mobile_flg,==,false) %>chk-pc<% else %>chk-sp<% /if %>">
     <div class="snap-drawer snap-drawer-left">
       <% if(mobile_flg,==,false) %>
         <div>-x-</div>

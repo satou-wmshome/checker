@@ -9,6 +9,15 @@ body
   *
     box-sizing: border-box
     font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+  // PCのみ
+  &.chk-pc
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 2
+    width: 230px
+    background: #333333
+    box-shadow: 3px 0 2px rgba(0, 0, 0, 0.4)
 
 #chk-content
   background: #ffffff
@@ -72,8 +81,8 @@ body
 
 .chk-button
   position: fixed
-  top: 50px
-  left: 20px
+  top: 30px
+  left: 30px
   display: block
   margin: 0 0 10px
   padding: 0
@@ -143,13 +152,3 @@ body
 // #chk-param_panel
 #chk-param_panel
   display: none
-
-// PCのみ
-.chk-drawers-pc
-  position: fixed
-  top: 0
-  left: 0
-  z-index: 2
-  width: 230px
-  background: #333333
-  box-shadow: 3px 0 2px rgba(0, 0, 0, 0.4)
