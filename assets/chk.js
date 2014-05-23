@@ -6,32 +6,48 @@
       open_width: 230,
       close_width: 0,
     };
+    var utils = {
+      open: function() {
+        $(settings.elm_id).animate({'width': settings.open_width, 'left': 0});
+        $(settings.elm_id).removeClass('closed');
+      },
+      close: function() {
+        var pos = settings.close_width - settings.open_width;
+        $(settings.elm_id).animate({'left': pos});
+        $(settings.elm_id).addClass('closed');
+      },
+      add_listener_close: function() {
+        $('.mod-body').on('click', function() {
+          utils.close();
+        });
+      }
+    };
+    var init = function() {
+      utils.close();
+      utils.add_listener_close();
+    }
 
     this.open = function() {
-      $(settings.elm_id).css({'width': settings.open_width, 'left': 0});
+      utils.open();
     };
     this.close = function() {
-      var pos = settings.close_width - settings.open_width;
-      $(settings.elm_id).css('left', pos);
-    };
-    this.init = function() {
-      this.close();
+      utils.close();
     };
 
-    this.init();
+    init();
   }
+
+  /////
 
   $(function() {
 
-    var w = window.innerWidth ? window.innerWidth: $(window).width();
-    var h = window.innerHeight ? window.innerHeight: $(window).height();
-
-    if($('#chk-leftpanel').hasClass('chk-pc')) {
-      var chk_leftpanel = new ChkLeftPanelPC();
+    if($('body').hasClass('chk-pc')) {
+      init();
     } else {
-      mobileInit(w);
+      initMobile();
     }
 
+    var h = window.innerHeight ? window.innerHeight: $(window).height();
     $('#chk-leftpanel').css('height', h);
     $('.chk-panel').css('height', h - 100);
 
@@ -45,34 +61,35 @@
 
     $('.chk-accordion_h').on('click', function() {
       $(this).next().slideToggle();
-      $(this).toggleClass("open");
+      $(this).toggleClass("closed");
     });
 
   });
 
-  function mobileInit(w) {
-    var panel_width = w * 0.7;
+  /////
+
+  function init() {
+    var chk_leftpanel = new ChkLeftPanelPC();
+    $('.chk-button').on('click', function() {
+      if($('#chk-leftpanel').hasClass('closed')) {
+        chk_leftpanel.open();
+      } else {
+        chk_leftpanel.close();
+      }
+    });
+  }
+
+  function initMobile() {
+    var w = window.innerWidth ? window.innerWidth: $(window).width();
+    var w = w * 0.7;
   	var snapper = new Snap({
   		element: document.getElementById('chk-content'),
   		disable: 'right',
-  		maxPosition: panel_width,
-  		minPosition: -panel_width,
+  		maxPosition: w,
+  		minPosition: -w,
   		tapToClose: false
   	});
-  	$('.snap-drawer').css('width', panel_width);
-
-  	$('.chk-button').on('click', function() {
-  		if(snapper.state().info.opening == 'left') {
-  //			snapper.close();
-  		} else {
-  //			snapper.open('left');
-  		}
-  console.log($('#chk-content').css('transform'));
-  	});
-
-  //snapper.on('start', function() {
-  //	console.log(snapper.state().info.opening);
-  //});
+  	$('.snap-drawer').css('width', w);
   }
 
 }());

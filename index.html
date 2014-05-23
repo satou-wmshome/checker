@@ -41,12 +41,12 @@
   <link rel="stylesheet" type="text/css" href="assets/chk.css" />
   <script src="assets/chk.js"></script>
 </head>
-<body>
+<body class="<% if(mobile_flg,==,false) %>chk-pc<% else %>chk-sp<% /if %>">
 
-  <div id="chk-leftpanel" class="snap-drawers <% if(mobile_flg,==,false) %>chk-pc<% else %>chk-sp<% /if %>">
+  <div id="chk-leftpanel" class="snap-drawers">
     <div class="snap-drawer snap-drawer-left">
       <% if(mobile_flg,==,false) %>
-        <div>-x-</div>
+        <div>close</div>
       <% /if %>
       <ul class="chk-tabs">
         <li class="chk-tab-ex on" data-chk-tab="chk-ex_panel">EX</li><li class="chk-tab-param" data-chk-tab="chk-param_panel">Settings</li>
