@@ -29,7 +29,7 @@
 			foreach( $list as $val) {
 				$label = "";
 				if( true ) {
-					$label = sprintf( "<span class=\"dev-part-name\">[%s] %s</span>\n", $val[ "json" ][ "data-parts-name" ], $val[ "json" ][ "name" ] );
+					$label = sprintf( "<span class=\"chk-part-name\">[%s] %s</span>\n", $val[ "json" ][ "data-parts-name" ], $val[ "json" ][ "name" ] );
 				}
 				$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
 			}
