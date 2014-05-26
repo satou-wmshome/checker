@@ -51,6 +51,23 @@
 	$html->clear();
 	unset( $html );
 
+	$ex = array();
+	foreach( $theme_json_data[ "parts_variation" ] as $tmp_val ) {
+		if( array_key_exists( "list", $tmp_val ) ) {
+			foreach( $tmp_val[ "list" ] as $val ) {
+				if( array_key_exists( "id", $val ) ) {
+					$ex[] = $val[ "id" ];
+				}
+			}
+		}
+	}
+	sort( $ex );
+	$ex = array_unique( $ex );
+	foreach( $ex as $val) {
+		$tmp[] = array( "id" => $val );
+	}
+	$out[ "ex_style" ] = $tmp;
+
 	if( DEBUG ) {
 		echo "<style>pre { font-size:12px;line-height:1.3; }</style>";
 		echo "<h2>【index.php】</h2>";

@@ -57,9 +57,9 @@
           <h3 class="chk-accordion_h">Ex-style</h3>
           <div class="chk-accordion">
             <ul>
-              <li><input type="radio" name="ex-style" value="01A1" /><label for="01A1">01A1</label></li>
-              <li><input type="radio" name="ex-style" value="01A2" /><label for="01A2">01A2</label></li>
-              <li><input type="radio" name="ex-style" value="01A3" /><label for="01A3">01A3</label></li>
+							<% each(ex_style) %>
+              <li><input type="radio" id="<% echo(ex_style/id) %>" name="ex-style" value="<% echo(ex_style/id) %>" /><label for="<% echo(ex_style/id) %>"><% echo(ex_style/id) %></label></li>
+							<% /each %>
             </ul>
           </div>
         </div>
