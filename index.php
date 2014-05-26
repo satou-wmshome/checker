@@ -37,9 +37,10 @@
 				}
 				$variation_id = trim( $variation_id );
 				$label = "";
-				$label = sprintf( "<span class=\"chk-part-name\" style=\"display:%s\" data-chk-variation=\"%s\">[%s] %s</span>\n",
-													$label_display,
+				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s</span>\n",
+													$val[ "json_data" ][ "data-parts-name" ],
 													$variation_id,
+													$label_display,
 													$val[ "json_data" ][ "data-parts-name" ],
 													$val[ "json_data" ][ "name" ] );
 				$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
@@ -63,8 +64,11 @@
 	}
 	sort( $ex );
 	$ex = array_unique( $ex );
+	$prev_ex = "";
 	foreach( $ex as $val) {
-		$tmp[] = array( "id" => $val );
+		$clear = ( strcmp( substr( $val, 0, 3 ), substr( $prev_ex, 0, 3 ) ) ) ? true : false;
+		$tmp[] = array( "id" => $val, "clear" => $clear );
+		$prev_ex = $val;
 	}
 	$out[ "ex_style" ] = $tmp;
 
