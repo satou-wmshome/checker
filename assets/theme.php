@@ -10,7 +10,9 @@ class Theme {
 		$this->setName();
 		$this->setMedia( $mobile_flg );
 		$this->setFilePath();
+		$this->setJsonData();
 		if( DEBUG ) {
+			echo "<h2>【theme.php】</h2>";
 			echo "<pre>";var_dump($this);echo "</pre>";
 		}
 	}
@@ -25,8 +27,18 @@ class Theme {
 	}
 
 	private function setFilePath() {
-		$this->theme[ "internal_path" ] = sprintf( "%s/%s/%s", self::THEME_DIR_INTERNAL, $this->theme[ "name" ], $this->theme[ "media" ] );
-		$this->theme[ "external_path" ] = sprintf( "%s/%s/%s", self::THEME_DIR_EXTERNAL, $this->theme[ "name" ], $this->theme[ "media" ] );
+		$this->theme[ "internal_root_path" ] = sprintf( "%s/%s", self::THEME_DIR_INTERNAL, $this->theme[ "name" ] );
+		$this->theme[ "internal_media_path" ] = sprintf( "%s/%s", $this->theme[ "internal_root_path" ], $this->theme[ "media" ] );
+		$this->theme[ "external_root_path" ] = sprintf( "%s/%s", self::THEME_DIR_EXTERNAL, $this->theme[ "name" ] );
+		$this->theme[ "external_media_path" ] = sprintf( "%s/%s", $this->theme[ "external_root_path" ], $this->theme[ "media" ] );
+	}
+
+	private function setJsonData() {
+		$this->theme[ "json_data" ] = array();
+		if( $json = @file_get_contents( $this->theme[ "internal_root_path" ]. "/theme.json" ) ) {
+			$json = mb_convert_encoding( $json, "UTF8", "auto" );
+			$this->theme[ "json_data" ] = json_decode($json, true);
+		}
 	}
 
 	public function name() {
@@ -37,16 +49,21 @@ class Theme {
 		return $this->theme[ "media" ];
 	}
 
+	public function jsonData() {
+		return $this->theme[ "json_data" ];
+	}
+
 	public function layoutTextInternalPath() {
-		return sprintf( "%s/layout.txt", $this->theme[ "internal_path" ] );
+		return sprintf( "%s/layout.txt", $this->theme[ "internal_media_path" ] );
 	}
 
 	public function layoutCssPath() {
-		return sprintf( "%s/layout.css", $this->theme[ "external_path" ] );
+		return sprintf( "%s/layout.css", $this->theme[ "external_media_path" ] );
 	}
 
 	public function modCssPath() {
-		return sprintf( "%s/mod.css", $this->theme[ "external_path" ] );
+		return sprintf( "%s/mod.css", $this->theme[ "external_media_path" ] );
 	}
+
 }
 ?>

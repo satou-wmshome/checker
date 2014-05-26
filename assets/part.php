@@ -10,7 +10,8 @@ class Part {
 		$this->setFilePath();
 		$this->setPartsData();
 		if( DEBUG ) {
-//	    echo "<pre>";var_dump($this);echo "</pre>";
+			echo "<h2>【part.php】</h2>";
+	    echo "<pre>";var_dump($this);echo "</pre>";
 		}
 	}
 
@@ -48,7 +49,7 @@ class Part {
 				foreach( $json[ "area" ] as $area ) {
 					$tmp[ "no" ] = $tmp_no;
 					$tmp[ "tmpl" ] = $tmpl_txt;
-					$tmp[ "json" ] = $json;
+					$tmp[ "json_data" ] = $json;
 					$this->parts[ "part_data" ][ $area ][ $file ] = $tmp;
 				}
 			}

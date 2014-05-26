@@ -1,5 +1,6 @@
 <?php
-	define( "DEBUG", false );
+	$debug = ( !isset( $_GET[ "debug" ] ) ) ? false : true;
+	define( "DEBUG", $debug );
 
   include_once( "Skinny.php" );
 	require_once( "./assets/Mobile_Detect.php" );
@@ -14,6 +15,7 @@
 	$out[ "mobile_flg" ] = $mobile_flg;
 
 	$theme = new Theme( $mobile_flg );
+	$theme_json_data = $theme->jsonData();
 	$out[ "media" ] = $theme->media();
 	$out[ "layout_css" ] = $theme->layoutCssPath();
 	$out[ "mod_css" ] = $theme->modCssPath();
@@ -27,10 +29,19 @@
 		if( !is_null( $list ) ) {
 			$parts_tmpl[ $area ] = null;
 			foreach( $list as $val) {
-				$label = "";
-				if( true ) {
-					$label = sprintf( "<span class=\"chk-part-name\">[%s] %s</span>\n", $val[ "json" ][ "data-parts-name" ], $val[ "json" ][ "name" ] );
+				$label_display = true ? "block" : "none";
+				$variation_arr = $theme_json_data[ "parts_variation" ][ $val[ "json_data" ][ "parts_variation" ] ][ "list" ];
+				$variation_id = "";
+				foreach( $variation_arr as $variation ) {
+					$variation_id .= $variation[ "id" ]. " ";
 				}
+				$variation_id = trim( $variation_id );
+				$label = "";
+				$label = sprintf( "<span class=\"chk-part-name\" style=\"display:%s\" data-chk-variation=\"%s\">[%s] %s</span>\n",
+													$label_display,
+													$variation_id,
+													$val[ "json_data" ][ "data-parts-name" ],
+													$val[ "json_data" ][ "name" ] );
 				$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
 			}
 			$html->find( "[data-cms-contents*=page-". $area. "]", 0 )->innertext = $parts_tmpl[ $area ];
@@ -42,6 +53,7 @@
 
 	if( DEBUG ) {
 		echo "<style>pre { font-size:12px;line-height:1.3; }</style>";
+		echo "<h2>【index.php】</h2>";
 		echo "<pre>";var_dump($out);echo "</pre>";
 	} else {
   	$Skinny->SkinnyDisplay( "index.html", $out );
