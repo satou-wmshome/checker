@@ -37,12 +37,14 @@
 				}
 				$variation_id = trim( $variation_id );
 				$label = "";
-				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s</span>\n",
+				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s | variation: %s</span>\n",
 													$val[ "json_data" ][ "data-parts-name" ],
 													$variation_id,
 													$label_display,
 													$val[ "json_data" ][ "data-parts-name" ],
-													$val[ "json_data" ][ "name" ] );
+													$val[ "json_data" ][ "name" ],
+													$variation_id
+												);
 				$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
 			}
 			$html->find( "[data-cms-contents*=page-". $area. "]", 0 )->innertext = $parts_tmpl[ $area ];
