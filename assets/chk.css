@@ -170,7 +170,7 @@ body {
 .chk-panel label {
   display: inline-block;
   margin: 0;
-  padding: 2px 0 2px 5px;
+  padding: 2px 5px;
   font-size: 12px;
   cursor: pointer;
 }
@@ -198,7 +198,7 @@ body {
 }
 /* line 152, chk.sass */
 #chk-ex_panel .chk-ex-style li {
-  padding: 0 20px 5px 0;
+  padding: 0 15px 5px 0;
   float: left;
 }
 /* line 155, chk.sass */
