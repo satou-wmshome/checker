@@ -20,13 +20,12 @@
         $('.mod-body').on('click', function() {
           utils.close();
         });
+      },
+      init: function() {
+        utils.close();
+        utils.add_listener_close();
       }
     };
-    var init = function() {
-      utils.close();
-      utils.add_listener_close();
-    }
-
     this.open = function() {
       utils.open();
     };
@@ -34,9 +33,52 @@
       utils.close();
     };
 
-    init();
+    utils.init();
   }
 
+  var exStyle = function() {
+    var settings = {
+      radio_name: 'ex-style',
+      label_cls: '.chk-part-name'
+    };
+    var utils = {
+      get_select_val: function() {
+        return $('[name=' + settings.radio_name + ']:checked').val();
+      },
+      remove_ex_class: function(id) {
+        $(settings.label_cls).each(function() {
+          var obj = $(this);
+          var variation_arr = obj.attr('data-chk-variation').split(' ');
+          $.each(variation_arr, function(idx, val) {
+            obj.next('[data-parts-name]').removeClass('ex-style_' + val);
+          });
+        });
+      },
+      add_ex_class: function(id) {
+        $(settings.label_cls).each(function() {
+          var part_variation = $(this).attr('data-chk-variation');
+          if(part_variation.indexOf(id) >= 0) {
+            $(this).next('[data-parts-name]').addClass('ex-style_' + id);
+          }
+        });
+      },
+      chenge_variation: function(id) {
+        utils.remove_ex_class(id);
+        utils.add_ex_class(id);
+      },
+      add_listener_change: function() {
+        $('[name=' + settings.radio_name + ']').on('change', function() {
+          var id = utils.get_select_val();
+          utils.chenge_variation(id);
+        });
+      },
+      init: function() {
+        utils.add_listener_change();
+      }
+    }
+
+    utils.init();
+  }
   /////
 
   $(function() {
@@ -64,6 +106,7 @@
       $(this).toggleClass("closed");
     });
 
+    var ex_style = new exStyle();
   });
 
   /////
