@@ -30,18 +30,24 @@
 			$parts_tmpl[ $area ] = null;
 			foreach( $list as $val) {
 				$label_display = true ? "block" : "none";
-				$variation_arr = $theme_json_data[ "parts_variation" ][ $val[ "json_data" ][ "parts_variation" ] ][ "list" ];
 				$variation_id = "";
-				foreach( $variation_arr as $variation ) {
-					$variation_id .= $variation[ "id" ]. " ";
+				if( array_key_exists( $val[ "json_data" ][ "parts_variation" ], $theme_json_data[ "parts_variation" ] ) ) {
+					$variation_arr = $theme_json_data[ "parts_variation" ][ $val[ "json_data" ][ "parts_variation" ] ][ "list" ];
+					foreach( $variation_arr as $variation ) {
+						$variation_id .= $variation[ "id" ]. " ";
+					}
 				}
 				$variation_id = trim( $variation_id );
 				$label = "";
+				$data_parts_name = "";
+				if( array_key_exists( "data-parts-name", $val[ "json_data" ] ) ) {
+					$data_parts_name = $val[ "json_data" ][ "data-parts-name" ];
+				}
 				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s | variation: %s</span>\n",
-													$val[ "json_data" ][ "data-parts-name" ],
+													$data_parts_name,
 													$variation_id,
 													$label_display,
-													$val[ "json_data" ][ "data-parts-name" ],
+													$data_parts_name,
 													$val[ "json_data" ][ "name" ],
 													$variation_id
 												);
