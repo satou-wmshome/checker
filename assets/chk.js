@@ -34,9 +34,9 @@
     };
 
     utils.init();
-  }
+  };
 
-  var exStyle = function() {
+  var ExStyle = function() {
     var settings = {
       radio_name: 'ex-style',
       label_cls: '.chk-part-name'
@@ -75,10 +75,11 @@
       init: function() {
         utils.add_listener_change();
       }
-    }
+    };
 
     utils.init();
-  }
+  };
+
   /////
 
   $(function() {
@@ -106,7 +107,7 @@
       $(this).toggleClass("closed");
     });
 
-    var ex_style = new exStyle();
+    var ex_style = new ExStyle();
   });
 
   /////
@@ -125,14 +126,14 @@
   function initMobile() {
     var w = window.innerWidth ? window.innerWidth: $(window).width();
     var w = w * 0.7;
-  	var snapper = new Snap({
-  		element: document.getElementById('chk-content'),
-  		disable: 'right',
-  		maxPosition: w,
-  		minPosition: -w,
-  		tapToClose: false
-  	});
-  	$('.snap-drawer').css('width', w);
+    var snapper = new Snap({
+      element: document.getElementById('chk-content'),
+      disable: 'right',
+      maxPosition: w,
+      minPosition: -w,
+      tapToClose: false
+    });
+    $('.snap-drawer').css('width', w);
   }
 
 }());
