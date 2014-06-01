@@ -1,6 +1,6 @@
 (function() {
 
-  var ChkLeftPanelPC = function() {
+  var LeftPanelPC = function() {
     var settings = {
       elm_id: '#chk-leftpanel',
       open_width: 230,
@@ -31,6 +31,48 @@
     };
     this.close = function() {
       utils.close();
+    };
+
+    utils.init();
+  };
+
+  var Tab = function() {
+    var settings = {
+      tabs_cls: '.chk-tabs'
+    };
+    var utils = {
+      add_listener_tab: function() {
+        $(settings.tabs_cls).children('li').on('click', function() {
+          var panel_id = '#' + $(this).attr('data-chk-tab');
+          $('.chk-panel').css('display', 'none');
+          $(panel_id).css('display', 'block');
+          $(settings.tabs_cls).children('li').removeClass('on');
+          $(this).addClass('on');
+        });
+      },
+      init: function() {
+        utils.add_listener_tab();
+      }
+    };
+
+    utils.init();
+  };
+
+  var Accordion = function() {
+    var settings = {
+      acc_h_cls: '.chk-accordion_h',
+      acc_area_cls: '.chk-accordion'
+    };
+    var utils = {
+      add_listener_acc: function() {
+        $('.chk-accordion_h').on('click', function() {
+          $(this).next().slideToggle();
+          $(this).toggleClass("closed");
+        });
+      },
+      init: function() {
+        utils.add_listener_acc();
+      }
     };
 
     utils.init();
@@ -94,31 +136,23 @@
     $('#chk-leftpanel').css('height', h);
     $('.chk-panel').css('height', h - 100);
 
-    $('.chk-tabs').children('li').on('click', function() {
-      var panel_id = '#' + $(this).attr('data-chk-tab');
-      $('.chk-panel').css('display', 'none');
-      $(panel_id).css('display', 'block');
-      $('.chk-tabs').children('li').removeClass('on');
-      $(this).addClass('on');
-    });
+    var tab = new Tab();
 
-    $('.chk-accordion_h').on('click', function() {
-      $(this).next().slideToggle();
-      $(this).toggleClass("closed");
-    });
+    var accordion = new Accordion();
 
     var ex_style = new ExStyle();
+
   });
 
   /////
 
   function init() {
-    var chk_leftpanel = new ChkLeftPanelPC();
+    var leftpanel = new LeftPanelPC();
     $('.chk-button').on('click', function() {
       if($('#chk-leftpanel').hasClass('closed')) {
-        chk_leftpanel.open();
+        leftpanel.open();
       } else {
-        chk_leftpanel.close();
+        leftpanel.close();
       }
     });
   }
