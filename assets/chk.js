@@ -37,16 +37,14 @@
   };
 
   var Tab = function() {
-    var settings = {
-      tabs_cls: '.chk-tabs'
-    };
+    var settings = {};
     var utils = {
       add_listener_tab: function() {
-        $(settings.tabs_cls).children('li').on('click', function() {
+        $('.chk-tabs').children('li').on('click', function() {
           var panel_id = '#' + $(this).attr('data-chk-tab');
           $('.chk-panel').css('display', 'none');
           $(panel_id).css('display', 'block');
-          $(settings.tabs_cls).children('li').removeClass('on');
+          $('.chk-tabs').children('li').removeClass('on');
           $(this).addClass('on');
         });
       },
@@ -59,10 +57,7 @@
   };
 
   var Accordion = function() {
-    var settings = {
-      acc_h_cls: '.chk-accordion_h',
-      acc_area_cls: '.chk-accordion'
-    };
+    var settings = {};
     var utils = {
       add_listener_acc: function() {
         $('.chk-accordion_h').on('click', function() {
@@ -72,6 +67,22 @@
       },
       init: function() {
         utils.add_listener_acc();
+      }
+    };
+
+    utils.init();
+  };
+
+  var FirstChild = function() {
+    var settings = {};
+    var utils = {
+      add_class: function() {
+        $('[data-cms-element-group]').each(function() {
+          $(this).children().eq(0).addClass('ex-first-child');
+        });
+      },
+      init: function() {
+        utils.add_class();
       }
     };
 
@@ -139,6 +150,8 @@
     var tab = new Tab();
 
     var accordion = new Accordion();
+
+    var first_child = new FirstChild();
 
     var ex_style = new ExStyle();
 
