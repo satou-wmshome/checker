@@ -1,136 +1,106 @@
 (function() {
 
-  var LeftPanelPC = function() {
-    var settings = {
-      elm_id: '#chk-leftpanel',
-      open_width: 230,
-      close_width: 0,
-    };
-    var utils = {
-      open: function() {
-        $(settings.elm_id).animate({'width': settings.open_width, 'left': 0});
-        $(settings.elm_id).removeClass('closed');
-      },
-      close: function() {
-        var pos = settings.close_width - settings.open_width;
-        $(settings.elm_id).animate({'left': pos});
-        $(settings.elm_id).addClass('closed');
-      },
-      add_listener_close: function() {
-        $('.mod-body').on('click', function() {
-          utils.close();
-        });
-      },
-      init: function() {
-        utils.close();
-        utils.add_listener_close();
-      }
-    };
-    this.open = function() {
-      utils.open();
-    };
-    this.close = function() {
-      utils.close();
-    };
-
-    utils.init();
+  var LeftPanel = function() {
+    this.$elm = $('#chk-leftpanel');
+    this.open_width = 230;
+    this.close_width = 0;
+    this.close();
+    this.addListenerClose();
   };
+  LeftPanel.prototype = {
+    open: function() {
+      this.$elm.animate({'width': this.open_width, 'left': 0});
+      this.$elm.removeClass('closed');
+    },
+    close: function() {
+      var pos = this.close_width - this.open_width;
+      this.$elm.animate({'left': pos});
+      this.$elm.addClass('closed');
+    },
+    addListenerClose: function() {
+      var self = this;
+      $('.mod-body').on('click', function() {
+        self.close();
+      });
+    }
+  }
 
   var Tab = function() {
-    var settings = {};
-    var utils = {
-      add_listener_tab: function() {
-        $('.chk-tabs').children('li').on('click', function() {
-          var panel_id = '#' + $(this).attr('data-chk-tab');
-          $('.chk-panel').css('display', 'none');
-          $(panel_id).css('display', 'block');
-          $('.chk-tabs').children('li').removeClass('on');
-          $(this).addClass('on');
-        });
-      },
-      init: function() {
-        utils.add_listener_tab();
-      }
-    };
-
-    utils.init();
+    this.$elm = $('.chk-tabs').children('li');
+    this.addListenerTab();
+  };
+  Tab.prototype = {
+    addListenerTab: function() {
+      var self = this;
+      self.$elm.on('click', function() {
+        $('.chk-panel').css('display', 'none');
+        self.$elm.removeClass('on');
+        var panel_id = '#' + $(this).attr('data-chk-tab');
+        $(panel_id).css('display', 'block');
+        $(this).addClass('on');
+      });
+    }
   };
 
   var Accordion = function() {
-    var settings = {};
-    var utils = {
-      add_listener_acc: function() {
-        $('.chk-accordion_h').on('click', function() {
-          $(this).next().slideToggle();
-          $(this).toggleClass("closed");
-        });
-      },
-      init: function() {
-        utils.add_listener_acc();
-      }
-    };
-
-    utils.init();
+    this.addListenerAcc();
+  };
+  Accordion.prototype = {
+    addListenerAcc: function() {
+      $('.chk-accordion_h').on('click', function() {
+        $(this).next().slideToggle();
+        $(this).toggleClass("closed");
+      });
+    }
   };
 
   var FirstChild = function() {
-    var settings = {};
-    var utils = {
-      add_class: function() {
-        $('[data-cms-element-group]').each(function() {
-          $(this).children().eq(0).addClass('ex-first-child');
-        });
-      },
-      init: function() {
-        utils.add_class();
-      }
-    };
-
-    utils.init();
+    this.addFirstChild();
+  };
+  FirstChild.prototype = {
+    addFirstChild: function() {
+      $('[data-cms-element-group]').each(function() {
+        $(this).children().eq(0).addClass('ex-first-child');
+      });
+    }
   };
 
   var ExStyle = function() {
-    var settings = {
-      radio_name: 'ex-style',
-      label_cls: '.chk-part-name'
-    };
-    var utils = {
-      get_select_val: function() {
-        return $('[name=' + settings.radio_name + ']:checked').val();
-      },
-      remove_ex_class: function(id) {
-        $(settings.label_cls).each(function() {
-          var obj = $(this);
-          var variation_arr = obj.attr('data-chk-variation').split(' ');
-          $.each(variation_arr, function(idx, val) {
-            obj.next('[data-parts-name]').removeClass('ex-style_' + val);
-          });
+    this.$elm = $('.chk-part-name');
+    this.addListenerChange();
+  };
+  ExStyle.prototype = {
+    getSelectVal: function() {
+      return $('[name=ex-style]:checked').val();
+    },
+    removeExClass: function(id) {
+      this.$elm.each(function() {
+        var obj = $(this);
+        var variation_arr = obj.attr('data-chk-variation').split(' ');
+        $.each(variation_arr, function(idx, val) {
+          obj.next('[data-parts-name]').removeClass('ex-style_' + val);
         });
-      },
-      add_ex_class: function(id) {
-        $(settings.label_cls).each(function() {
-          var part_variation = $(this).attr('data-chk-variation');
-          if(part_variation.indexOf(id) >= 0) {
-            $(this).next('[data-parts-name]').addClass('ex-style_' + id);
-          }
-        });
-      },
-      chenge_variation: function(id) {
-        utils.remove_ex_class(id);
-        utils.add_ex_class(id);
-      },
-      add_listener_change: function() {
-        $('[name=' + settings.radio_name + ']').on('change', function() {
-          var id = utils.get_select_val();
-          utils.chenge_variation(id);
-        });
-      },
-      init: function() {
-        utils.add_listener_change();
-      }
-    };
-
-    utils.init();
+      });
+    },
+    addExClass: function(id) {
+      this.$elm.each(function() {
+        var part_variation = $(this).attr('data-chk-variation');
+        if(part_variation.indexOf(id) >= 0) {
+          $(this).next('[data-parts-name]').addClass('ex-style_' + id);
+        }
+      });
+    },
+    chengeVariation: function(id) {
+      this.removeExClass(id);
+      this.addExClass(id);
+    },
+    addListenerChange: function() {
+      var self = this;
+      $('[name=ex-style]').on('change', function() {
+        var id = self.getSelectVal();
+        self.chengeVariation(id);
+      });
+    }
   };
 
   /////
@@ -160,7 +130,7 @@
   /////
 
   function init() {
-    var leftpanel = new LeftPanelPC();
+    var leftpanel = new LeftPanel();
     $('.chk-button').on('click', function() {
       if($('#chk-leftpanel').hasClass('closed')) {
         leftpanel.open();
