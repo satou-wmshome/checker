@@ -126,7 +126,7 @@
       </div>
       <!-- chk-param_panel -->
       <div id="chk-param_panel" class="chk-panel">
-        <form action="./" method="get">
+        <form name="settings">
           <div>
             <h3>Media</h3>
             <div>
@@ -137,17 +137,38 @@
           <div>
             <h3>Theme Directory</h3>
             <div>
-              <input type="text" name="theme" />
+              <input type="text" name="theme" size="18" />
             </div>
           </div>
           <div>
-            <h3>Part Directory</h3>
+            <h3>Parts Directory</h3>
             <div>
-              <input type="text" name="part" />
+              <input type="text" name="parts" size="18" />
             </div>
           </div>
           <div>
-            <input type="submit" value="送信">
+            <h3>Select Parts</h3>
+            <div>
+              <ul>
+                <li><input type="radio" name="selectmethod" value="r" /><label for="range">Range</label></li>
+                <li><input type="radio" name="selectmethod" value="e" /><label for="extraction">Extraction</label></li>
+              </ul>
+              <ul>
+                <li><label for="header">Header</label><input type="text" name="header" size="10" /></li>
+                <li><label for="main">Main</label><input type="text" name="main" size="10" /></li>
+                <li><label for="sub">Side</label><input type="text" name="sub" size="10" /></li>
+                <li><label for="footer">Footer</label><input type="text" name="footer" size="10" /></li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3>Keyword Search</h3>
+            <div>
+              <input type="text" name="keyword" size="18" />
+            </div>
+          </div>
+          <div>
+            <input type="button" value="送信" class="submit_btn">
           </div>
         </form>
       </div>

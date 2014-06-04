@@ -25,6 +25,42 @@
     }
   }
 
+  var Form = function() {
+    this.$elm = $('form[name=settings]');
+    this.setValue();
+    this.addListenerSubmit();
+  };
+  Form.prototype = {
+    setValue: function() {},
+    getValue: function() {
+      var res = this.$elm.serializeArray();
+      return res;
+    },
+    createForm: function(param) {
+      var res;
+      var form = document.createElement('form');
+      $.each(param, function(idx, obj) {
+        if(obj['value'].match(/\S/g)) {
+          var elm = document.createElement("input");
+          elm.name = obj['name'];
+          elm.value = obj['value'];
+          form.appendChild(elm);
+        }
+      });
+      document.body.appendChild(form);
+      res = form;
+      return res;
+    },
+    addListenerSubmit: function() {
+      var self = this;
+      $('.submit_btn').on('click', function() {
+        var param = self.getValue();
+        var form = self.createForm(param);
+        form.submit();
+      });
+    },
+  };
+
   var Tab = function() {
     this.$elm = $('.chk-tabs').children('li');
     this.addListenerTab();
@@ -70,10 +106,10 @@
     this.addListenerChange();
   };
   ExStyle.prototype = {
-    getSelectVal: function() {
+    getSelectValue: function() {
       return $('[name=ex-style]:checked').val();
     },
-    removeExClass: function(id) {
+    removeExClass: function() {
       this.$elm.each(function() {
         var obj = $(this);
         var variation_arr = obj.attr('data-chk-variation').split(' ');
@@ -91,13 +127,13 @@
       });
     },
     chengeVariation: function(id) {
-      this.removeExClass(id);
+      this.removeExClass();
       this.addExClass(id);
     },
     addListenerChange: function() {
       var self = this;
       $('[name=ex-style]').on('change', function() {
-        var id = self.getSelectVal();
+        var id = self.getSelectValue();
         self.chengeVariation(id);
       });
     }
@@ -116,6 +152,8 @@
     var h = window.innerHeight ? window.innerHeight: $(window).height();
     $('#chk-leftpanel').css('height', h);
     $('.chk-panel').css('height', h - 100);
+
+    var form = new Form();
 
     var tab = new Tab();
 
