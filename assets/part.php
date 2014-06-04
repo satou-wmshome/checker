@@ -138,7 +138,7 @@ class Part {
 		return $res;
 	}
 
-	public function partData( $area ) {
+	public function partsData( $area ) {
 		$res = null;
 		if( array_key_exists( $area, $this->parts[ "part_data" ] ) ) {
 			if( isset( $_GET[ $area ] ) && !is_null( $_GET[ $area ] ) ) {

@@ -25,7 +25,7 @@
 	$parts = new Part;
 	$parts_tmpl = array();
 	foreach( $area_array as $area ) {
-		$list = $parts->partData( $area );
+		$list = $parts->partsData( $area );
 		if( !is_null( $list ) ) {
 			$parts_tmpl[ $area ] = null;
 			foreach( $list as $val) {
