@@ -227,3 +227,15 @@ body {
   width: 55px;
   display: inline-block;
 }
+/* line 171, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-param_panel .submit_btn {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 3px 15px 5px;
+  background: #145aa5;
+  border: 1px solid #0a509b;
+  border-radius: 2px;
+  display: block;
+}
