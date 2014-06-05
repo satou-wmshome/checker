@@ -210,3 +210,20 @@ body {
 #chk-param_panel {
   display: none;
 }
+/* line 161, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-param_panel .chk-select-parts-method {
+  margin: 0 0 10px;
+}
+/* line 164, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-param_panel .chk-select-parts-area li {
+  margin: 0 0 5px;
+}
+/* line 166, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-param_panel .chk-select-parts-area li:last-child {
+  margin: 0;
+}
+/* line 168, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-param_panel .chk-select-parts-area label {
+  width: 55px;
+  display: inline-block;
+}

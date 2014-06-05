@@ -130,8 +130,8 @@
           <div>
             <h3>Media</h3>
             <div>
-              <input type="radio" name="media" value="pc" /><label for="pc">PC</label>
-              <input type="radio" name="media" value="sp" /><label for="sp">SP</label>
+              <input type="radio" id="pc" name="media" value="pc" /><label for="pc">PC</label>
+              <input type="radio" id="sp" name="media" value="sp" /><label for="sp">SP</label>
             </div>
           </div>
           <div>
@@ -146,14 +146,14 @@
               <input type="text" name="parts" size="18" />
             </div>
           </div>
-          <div>
+          <div class="chk-select-parts">
             <h3>Select Parts</h3>
             <div>
-              <ul>
-                <li><input type="radio" name="selectmethod" value="r" /><label for="range">Range</label></li>
-                <li><input type="radio" name="selectmethod" value="e" /><label for="extraction">Extraction</label></li>
+              <ul class="chk-select-parts-method">
+                <li><input type="radio" id="range" name="selectmethod" value="r" /><label for="range">Range</label></li>
+                <li><input type="radio" id="extraction" name="selectmethod" value="e" /><label for="extraction">Extraction</label></li>
               </ul>
-              <ul>
+              <ul class="chk-select-parts-area">
                 <li><label for="header">Header</label><input type="text" name="header" size="10" /></li>
                 <li><label for="main">Main</label><input type="text" name="main" size="10" /></li>
                 <li><label for="sub">Side</label><input type="text" name="sub" size="10" /></li>
