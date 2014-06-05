@@ -16,7 +16,7 @@ class Part {
 	}
 
 	private function setName() {
-		$this->parts[ "group_name" ] = isset( $_GET[ "part" ] ) ? htmlspecialchars( $_GET[ "part" ] ) : self::DEFAULT_PARTS_NM;
+		$this->parts[ "group_name" ] = isset( $_GET[ "parts" ] ) ? htmlspecialchars( $_GET[ "parts" ] ) : self::DEFAULT_PARTS_NM;
 	}
 
 	private function setFilePath() {
@@ -146,7 +146,7 @@ class Part {
 			} else {
 				$tmp = $this->parts[ "part_data" ][ $area ];
 			}
-			$tmp = $this->keyWordSerch( $tmp ); 
+			$tmp = $this->keyWordSerch( $tmp );
 			$res = $tmp;
 		}
 		return $res;
