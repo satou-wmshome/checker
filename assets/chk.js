@@ -32,7 +32,7 @@
   };
   Form.prototype = {
     getUrlParams: function() {
-      var res;
+      var res = null;
       var params = location.href.split('?')[1].split('&');
       var paramsArray = {};
       $.each(params, function(idx, val) {
@@ -65,7 +65,7 @@
       return res;
     },
     createForm: function(param) {
-      var res;
+      var res = null;
       var form = document.createElement('form');
       $.each(param, function(idx, obj) {
         if(obj['value'].match(/\S/g)) {
@@ -134,7 +134,7 @@
     this.addListenerChange();
   };
   ExStyle.prototype = {
-    getSelectValue: function() {
+    getSelectedValue: function() {
       return $('[name=ex-style]:checked').val();
     },
     removeExClass: function() {
@@ -146,23 +146,63 @@
         });
       });
     },
-    addExClass: function(id) {
+    addExClass: function(cls_name) {
       this.$elm.each(function() {
         var part_variation = $(this).attr('data-chk-variation');
-        if(part_variation.indexOf(id) >= 0) {
-          $(this).next('[data-parts-name]').addClass('ex-style_' + id);
+        if(part_variation.indexOf(cls_name) >= 0) {
+          $(this).next('[data-parts-name]').addClass('ex-style_' + cls_name);
         }
       });
-    },
-    chengeVariation: function(id) {
-      this.removeExClass();
-      this.addExClass(id);
     },
     addListenerChange: function() {
       var self = this;
       $('[name=ex-style]').on('change', function() {
-        var id = self.getSelectValue();
-        self.chengeVariation(id);
+        var cls_name = self.getSelectedValue();
+        self.removeExClass();
+        self.addExClass(cls_name);
+      });
+    }
+  };
+
+  var ExImg = function(name) {
+    this.$elm_parts = $('[data-parts-name]');
+    this.name = name;
+    this.$elm_input = $('[name=' + this.name + ']');
+    this.values = this.getValues();
+    this.addListenerChange();
+  };
+  ExImg.prototype = {
+    getValues: function() {
+      var res = null;
+      var tmp = ''
+      this.$elm_input.each(function() {
+        tmp += $(this).val() + ' ';
+      });
+      res = tmp.split(' none ')[0];
+      return res;
+    },
+    getSelectedValue: function() {
+      return $('[name=' + this.name + ']:checked').val();
+    },
+    removeExClass: function() {
+      var self = this;
+      this.$elm_parts.each(function() {
+        $(this).removeClass(self.values);
+      });
+    },
+    addExClass: function(cls_name) {
+      this.$elm_parts.each(function() {
+        $(this).addClass(cls_name);
+      });
+    },
+    addListenerChange: function() {
+      var self = this;
+      this.$elm_input.on('change', function() {
+        var cls_name = self.getSelectedValue();
+        self.removeExClass();
+        if(cls_name !== 'none') {
+          self.addExClass(cls_name);
+        }
       });
     }
   };
@@ -190,6 +230,12 @@
     var first_child = new FirstChild();
 
     var ex_style = new ExStyle();
+
+    var ex_img_size = new ExImg('ex-imgSize');
+
+    var ex_img_layout = new ExImg('ex-imgLayout');
+
+    var ex_img_float = new ExImg('ex-imgFloat');
 
   });
 
