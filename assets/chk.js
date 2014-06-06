@@ -23,7 +23,7 @@
         self.close();
       });
     }
-  }
+  };
 
   var Form = function() {
     this.$elm = $('form[name=settings]');
@@ -164,40 +164,40 @@
     }
   };
 
-  var ExImg = function(name) {
-    this.$elm_parts = $('[data-parts-name]');
-    this.name = name;
-    this.$elm_input = $('[name=' + this.name + ']');
+  var ExOthersStyle = function(input_name, parts_elm) {
+    this.input_name = input_name;
+    this.$input_elm = $('[name=' + this.input_name + ']');
+    this.$parts_elm = parts_elm || $('[data-parts-name]');
     this.values = this.getValues();
     this.addListenerChange();
   };
-  ExImg.prototype = {
+  ExOthersStyle.prototype = {
     getValues: function() {
       var res = null;
-      var tmp = ''
-      this.$elm_input.each(function() {
+      var tmp = '';
+      this.$input_elm.each(function() {
         tmp += $(this).val() + ' ';
       });
       res = tmp.split(' none ')[0];
       return res;
     },
     getSelectedValue: function() {
-      return $('[name=' + this.name + ']:checked').val();
+      return $('[name=' + this.input_name + ']:checked').val();
     },
     removeExClass: function() {
       var self = this;
-      this.$elm_parts.each(function() {
+      this.$parts_elm.each(function() {
         $(this).removeClass(self.values);
       });
     },
     addExClass: function(cls_name) {
-      this.$elm_parts.each(function() {
+      this.$parts_elm.each(function() {
         $(this).addClass(cls_name);
       });
     },
     addListenerChange: function() {
       var self = this;
-      this.$elm_input.on('change', function() {
+      this.$input_elm.on('change', function() {
         var cls_name = self.getSelectedValue();
         self.removeExClass();
         if(cls_name !== 'none') {
@@ -231,11 +231,13 @@
 
     var ex_style = new ExStyle();
 
-    var ex_img_size = new ExImg('ex-imgSize');
+    var ex_img_size = new ExOthersStyle('ex-imgSize');
 
-    var ex_img_layout = new ExImg('ex-imgLayout');
+    var ex_img_layout = new ExOthersStyle('ex-imgLayout');
 
-    var ex_img_float = new ExImg('ex-imgFloat');
+    var ex_img_float = new ExOthersStyle('ex-imgFloat');
+
+    var ex_align = new ExOthersStyle('ex-align', $('[data-parts-name]').find('[data-cms-editable-heading]'));
 
   });
 
