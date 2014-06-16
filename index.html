@@ -162,40 +162,40 @@
           <div>
             <h3>Media</h3>
             <div>
-              <input type="radio" id="pc" name="media" value="pc" /><label for="pc">PC</label>
-              <input type="radio" id="sp" name="media" value="sp" /><label for="sp">SP</label>
+              <input type="radio" id="pc" name="media" value="pc" <% if(get_media,==,"pc") %>checked<% /if %> /><label for="pc">PC</label>
+              <input type="radio" id="sp" name="media" value="sp" <% if(get_media,==,"sp") %>checked<% /if %> /><label for="sp">SP</label>
             </div>
           </div>
           <div>
             <h3>Theme Directory</h3>
             <div>
-              <input type="text" name="theme" size="18" />
+              <input type="text" name="theme" size="18" value="<% echo(get_theme) %>" />
             </div>
           </div>
           <div>
             <h3>Parts Directory</h3>
             <div>
-              <input type="text" name="parts" size="18" />
+              <input type="text" name="parts" size="18" value="<% echo(get_parts) %>" />
             </div>
           </div>
           <div>
             <h3>Keyword Search</h3>
             <div>
-              <input type="text" name="keyword" size="18" />
+              <input type="text" name="keyword" size="18" value="<% echo(get_keyword) %>" />
             </div>
           </div>
           <div class="chk-select-parts">
             <h3>Select Parts</h3>
             <div>
               <ul class="chk-select-parts-method">
-                <li><input type="radio" id="range" name="selectmethod" value="r" /><label for="range">Range</label></li>
-                <li><input type="radio" id="extraction" name="selectmethod" value="e" /><label for="extraction">Extraction</label></li>
+                <li><input type="radio" id="range" name="selectmethod" value="r" <% if(get_selectmethod,==,"r") %>checked<% /if %> /><label for="range">Range</label></li>
+                <li><input type="radio" id="extraction" name="selectmethod" value="e" <% if(get_selectmethod,==,"e") %>checked<% /if %> /><label for="extraction">Extraction</label></li>
               </ul>
               <ul class="chk-select-parts-area">
-                <li><label for="header">Header</label><input type="text" name="header" size="10" /></li>
-                <li><label for="main">Main</label><input type="text" name="main" size="10" /></li>
-                <li><label for="sub">Side</label><input type="text" name="sub" size="10" /></li>
-                <li><label for="footer">Footer</label><input type="text" name="footer" size="10" /></li>
+                <li><label for="header">Header</label><input type="text" name="header" size="10" value="<% echo(get_header) %>" /></li>
+                <li><label for="main">Main</label><input type="text" name="main" size="10" value="<% echo(get_main) %>" /></li>
+                <li><label for="sub">Side</label><input type="text" name="sub" size="10" value="<% echo(get_sub) %>" /></li>
+                <li><label for="footer">Footer</label><input type="text" name="footer" size="10" value="<% echo(get_footer) %>" /></li>
               </ul>
             </div>
           </div>

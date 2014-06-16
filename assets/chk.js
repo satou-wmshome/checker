@@ -27,39 +27,9 @@
 
   var Form = function() {
     this.$elm = $('form[name=settings]');
-    this.setValue();
     this.addListenerSubmit();
   };
   Form.prototype = {
-    getUrlParams: function() {
-      var res = null;
-      var params = location.href.split('?')[1].split('&');
-      var paramsArray = {};
-      $.each(params, function(idx, val) {
-        var tmp = val.split('=');
-        paramsArray[tmp[0]] = tmp[1];
-      });
-      res = paramsArray;
-      return res;
-    },
-    setValue: function() {
-      params = this.getUrlParams();
-      $.each(params, function(key, val) {
-        if($('[name=' + key + ']').eq(0)) {
-          var elm = $('[name=' + key + ']');
-          var type = elm.attr('type');
-          switch(type) {
-            case 'text':
-              val = decodeURIComponent(val);
-              elm.val(val);
-              break;
-            case 'radio':
-              elm.val([val]);
-              break;
-          }
-        }
-      });
-    },
     getValue: function() {
       var res = this.$elm.serializeArray();
       return res;

@@ -11,7 +11,7 @@
 	$out = array();
 
 	$detect = new Mobile_Detect;
-	$mobile_flg = $detect->isMobile() ? true : false ;
+	$mobile_flg = $detect->isMobile() ? true : false;
 	$out[ "mobile_flg" ] = $mobile_flg;
 
 	$theme = new Theme( $mobile_flg );
@@ -19,6 +19,16 @@
 	$out[ "media" ] = $theme->media();
 	$out[ "layout_css" ] = $theme->layoutCssPath();
 	$out[ "mod_css" ] = $theme->modCssPath();
+
+	$out[ "get_media" ] = $_GET[ "media" ];
+	$out[ "get_theme" ] = $_GET[ "theme" ];
+	$out[ "get_parts" ] = $_GET[ "parts" ];
+	$out[ "get_keyword" ] = $_GET[ "keyword" ];
+	$out[ "get_selectmethod" ]= $_GET[ "selectmethod" ];
+	$out[ "get_header" ] = $_GET[ "header" ];
+	$out[ "get_main" ] = $_GET[ "main" ];
+	$out[ "get_sub" ] = $_GET[ "sub" ];
+	$out[ "get_footer" ] = $_GET[ "footer" ];
 
 	$area_array = array( "header", "main", "sub", "footer" );
 	$html = str_get_html( file_get_contents( $theme->layoutTextInternalPath() ) );
