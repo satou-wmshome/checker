@@ -2,7 +2,7 @@
 class Theme {
 	const THEME_DIR_INTERNAL = "/var/www/html/next-cms-design-theme/theme";
 	const THEME_DIR_EXTERNAL = "/next-cms-design-theme/theme";
-	const DEFAULT_THEME_NM = "theme1-1";
+	const DEFAULT_THEME_NM = "A1-1a1-L25_v10";
 
 	private $theme = array();
 
