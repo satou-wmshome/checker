@@ -109,19 +109,24 @@
     },
     removeExClass: function() {
       this.$elm.each(function() {
-        var obj = $(this);
-        var variation_arr = obj.attr('data-chk-variation').split(' ');
-        $.each(variation_arr, function(idx, val) {
-          obj.next('[data-parts-name]').removeClass('ex-style_' + val);
-        });
+				var obj = $(this).next('[data-parts-name]');
+				var cls_arr = obj.attr('class').split(' ');
+				$.each(cls_arr, function(idx, val) {
+					if(val.indexOf('ex-style') >= 0) {
+						obj.removeClass(val);
+					}
+				});
       });
     },
     addExClass: function(cls_name) {
       this.$elm.each(function() {
         var part_variation = $(this).attr('data-chk-variation');
-        if(part_variation.indexOf(cls_name) >= 0) {
-          $(this).next('[data-parts-name]').addClass('ex-style_' + cls_name);
+				var ex_cls = 'ex-style_' + cls_name;
+        if(part_variation.indexOf(cls_name) < 0) {
+					tmp_cls = $(this).attr('data-chk-default-ex');
+					ex_cls = (tmp_cls !== '') ? 'ex-style_' + tmp_cls: '';
         }
+        $(this).next('[data-parts-name]').addClass(ex_cls);
       });
     },
     addListenerChange: function() {

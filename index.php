@@ -39,7 +39,22 @@
 		if( !is_null( $list ) ) {
 			$parts_tmpl[ $area ] = null;
 			foreach( $list as $val) {
-				$label_display = true ? "block" : "none";
+				$data_parts_name = "";
+				if( array_key_exists( "data-parts-name", $val[ "json_data" ] ) ) {
+					$data_parts_name = $val[ "json_data" ][ "data-parts-name" ];
+				}
+
+				$parts_html = str_get_html( $val[ "tmpl" ] );
+				$parts_cls = $parts_html->find( "[data-parts-name]", 0 )->getAttribute("class");
+				$parts_cls_arr = explode( " ", $parts_cls );
+				foreach( $parts_cls_arr as $tmp_cls ) {
+					if ( strstr( $tmp_cls, "ex-style" ) ) {
+						$tmp_cls = explode( "ex-style_", $tmp_cls );
+						$default_cls = $tmp_cls[ 1 ];
+					}
+				}
+				$parts_html->clear();
+
 				$variation_id = "";
 				if( array_key_exists( $val[ "json_data" ][ "parts_variation" ], $theme_json_data[ "parts_variation" ] ) ) {
 					$variation_arr = $theme_json_data[ "parts_variation" ][ $val[ "json_data" ][ "parts_variation" ] ][ "list" ];
@@ -48,13 +63,13 @@
 					}
 				}
 				$variation_id = trim( $variation_id );
+
+				$label_display = true ? "block" : "none";
+
 				$label = "";
-				$data_parts_name = "";
-				if( array_key_exists( "data-parts-name", $val[ "json_data" ] ) ) {
-					$data_parts_name = $val[ "json_data" ][ "data-parts-name" ];
-				}
-				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s | variation: %s</span>\n",
+				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-default-ex=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s | variation: %s</span>\n",
 													$data_parts_name,
+													$default_cls,
 													$variation_id,
 													$label_display,
 													$data_parts_name,
