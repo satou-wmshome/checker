@@ -110,12 +110,14 @@
     removeExClass: function() {
       this.$elm.each(function() {
 				var obj = $(this).next('[data-parts-name]');
-				var cls_arr = obj.attr('class').split(' ');
-				$.each(cls_arr, function(idx, val) {
-					if(val.indexOf('ex-style') >= 0) {
-						obj.removeClass(val);
-					}
-				});
+        if(obj[0]) {
+          var cls_arr = obj.attr('class').split(' ');
+          $.each(cls_arr, function(idx, val) {
+            if(val.indexOf('ex-style') >= 0) {
+              obj.removeClass(val);
+            }
+          });
+        }
       });
     },
     addExClass: function(cls_name) {
@@ -182,6 +184,57 @@
     }
   };
 
+  var AnchorManage = function() {
+    this.$elm_banner = $('[data-cms-editable="banner"]');
+    this.$elm_heading = $('[data-cms-editable="heading"]');
+    this.$elm_div_heading = $('div[data-cms-editable="heading"]');
+    this.$elm_table_td = $('[class*="mod-table"]').find('th, td');
+    this.$elm_text = $('[data-cms-editable="text"]');
+    this.$elm_wysiwyg_li = $('[data-cms-editable="wysiwyg"]').find('li');
+    this.$elm_wysiwyg_p = $('[data-cms-editable="wysiwyg"]').children('p');
+    this.anchor_tag = '<a href="#" data-chk-anchormanage></a>';
+    this.sapn_tag = '<span data-chk-anchormanage></span>';
+    this.addListenerChange();
+  };
+  AnchorManage.prototype = {
+    getSelectedValue: function() {
+      return $('[name=anchor]:checked').val();
+    },
+    NoName: function(type) {
+      switch(type) {
+        case 'link':
+          this.addAnchorTag();
+          break;
+        case 'hover':
+          this.addAnchorTag();
+          break;
+        case 'none':
+          this.removeAnchorTag();
+          break;
+      }
+    },
+    addAnchorTag: function() {
+      this.$elm_banner.wrap(this.anchor_tag);
+      this.$elm_banner.find('[data-cms-editable="text"]').children('a').wrapInner(this.sapn_tag).children('span').unwrap();
+      this.$elm_heading.wrap(this.anchor_tag);
+      this.$elm_div_heading.unwrap().find('.mod-h').wrap(this.anchor_tag);
+      this.$elm_table_td.wrapInner(this.anchor_tag);
+      this.$elm_text.wrapInner(this.anchor_tag);
+      this.$elm_wysiwyg_li.wrapInner(this.anchor_tag);
+      this.$elm_wysiwyg_p.wrapInner(this.anchor_tag);
+    },
+    removeAnchorTag: function() {
+      $('[data-chk-anchormanage]').contents().unwrap();
+    },
+    addListenerChange: function() {
+      var self = this;
+      $('[name=anchor]').on('change', function() {
+        var value = self.getSelectedValue();
+        self.NoName(value);
+      });
+    }
+  };
+
   /////
 
   $(function() {
@@ -214,6 +267,7 @@
 
     var ex_align = new ExOthersStyle('ex-align', $('[data-parts-name]').find('[data-cms-editable-heading]'));
 
+    var anchor = new AnchorManage();
   });
 
   /////
