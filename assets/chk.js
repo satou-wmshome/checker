@@ -100,7 +100,7 @@
   };
 
   var ExStyle = function() {
-    this.$elm = $('.chk-part-name');
+    this.$elm = $('.chk-label');
     this.addListenerChange();
   };
   ExStyle.prototype = {
@@ -268,6 +268,10 @@
     var ex_align = new ExOthersStyle('ex-align', $('[data-parts-name]').find('[data-cms-editable-heading]'));
 
     var anchor = new AnchorManage();
+
+    $('.chk-label').each(function() {
+      $(this).powerTip({placement: 'sw-alt'});
+    });
   });
 
   /////

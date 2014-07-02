@@ -66,15 +66,26 @@
 
 				$label_display = true ? "block" : "none";
 
+				$dir = "";
+				foreach ( $val[ "json_data" ][ "dir" ] as $dir_name ) {
+					$dir .= $dir_name. ", ";
+				}
+				$tip_data = sprintf("data-powertip=\"default : %s<br />variation : %s<br />dir : %s<br />ver : %s\"",
+											$default_cls,
+											$variation_id,
+											rtrim($dir, ", "),
+											$val[ "json_data" ][ "ver" ]
+										);
+
 				$label = "";
-				$label = sprintf( "<span class=\"chk-part-name\" data-chk-label-name=\"%s\" data-chk-default-ex=\"%s\" data-chk-variation=\"%s\" style=\"display:%s\">[%s] %s | variation: %s</span>\n",
+				$label = sprintf( "<span class=\"chk-label\" data-chk-label-name=\"%s\" data-chk-default-ex=\"%s\" data-chk-variation=\"%s\" %s style=\"display:%s\">[%s] %s</span>\n",
 													$data_parts_name,
 													$default_cls,
 													$variation_id,
+													$tip_data,
 													$label_display,
 													$data_parts_name,
-													$val[ "json_data" ][ "name" ],
-													$variation_id
+													$val[ "json_data" ][ "name" ]
 												);
 				$parts_tmpl[ $area ] .= $label. $val[ "tmpl" ];
 			}
