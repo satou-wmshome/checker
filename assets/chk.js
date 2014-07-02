@@ -200,16 +200,16 @@
     getSelectedValue: function() {
       return $('[name=anchor]:checked').val();
     },
-    NoName: function(type) {
+    switchType: function(type) {
+      this.removeAnchorTag();
       switch(type) {
         case 'link':
           this.addAnchorTag();
           break;
         case 'hover':
-          this.addAnchorTag();
-          break;
-        case 'none':
           this.removeAnchorTag();
+          this.addAnchorTag();
+          this.makeHover();
           break;
       }
     },
@@ -223,14 +223,49 @@
       this.$elm_wysiwyg_li.wrapInner(this.anchor_tag);
       this.$elm_wysiwyg_p.wrapInner(this.anchor_tag);
     },
+    makeHover: function() {
+      for(var i = 0; i < document.styleSheets.length; i++) {
+        if(document.styleSheets[i].href.indexOf('mod.css') != -1) {
+          var stylesheet = document.styleSheets[i];
+        }
+      }
+      var css_rules = stylesheet.cssRules;
+      var rule = '';
+      $.each(css_rules, function(key, val) {
+        if('href' in val) {
+          $.each(val.styleSheet.rules, function(key2, val2) {
+            if(val2.selectorText.indexOf(':hover') != -1) {
+              var selector = val2.selectorText.replace(/:hover/g, '');
+              rule += selector + '{' + val2.style.cssText + '}';
+            }
+          });
+        } else {
+          if(val.selectorText.indexOf(':hover') != -1) {
+            var selector = val.selectorText.replace(/:hover/g, '');
+            rule += selector + '{' + val.style.cssText + '}';
+          }
+        }
+      });
+      var elm = document.createElement('style');
+      var node = document.createTextNode(rule);
+      elm.type = 'text/css';
+      if(elm.styleSheet) {
+        elm.styleSheet.cssText = node.nodeValue;
+      } else {
+        elm.appendChild(node);
+      }
+      elm.setAttribute('data-chk-hover-style', '');
+      $('head').append(elm);
+    },
     removeAnchorTag: function() {
+      $('[data-chk-hover-style]').remove();
       $('[data-chk-anchormanage]').contents().unwrap();
     },
     addListenerChange: function() {
       var self = this;
       $('[name=anchor]').on('change', function() {
         var value = self.getSelectedValue();
-        self.NoName(value);
+        self.switchType(value);
       });
     }
   };
