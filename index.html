@@ -40,6 +40,14 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
   <link rel="stylesheet" type="text/css" href="assets/jquery.powertip.min.css" />
   <link rel="stylesheet" type="text/css" href="assets/chk.css" />
+  <% if(mobile_flg,==,false) %><% if(media,==,"sp") %>
+  <style>
+  #chk-content {
+    width: 320px;
+    border-right: 1px solid #cccccc;
+  }
+  </style>
+  <% /if %><% /if %>
   <script src="assets/jquery.powertip.min.js"></script>
   <script src="assets/chk.js"></script>
 </head>
