@@ -88,6 +88,24 @@
     }
   };
 
+  var PartLabel = function() {
+    this.$elm = $('.chk-label');
+    this.partInfo();
+    this.addListenerAcc();
+  };
+  PartLabel.prototype = {
+    partInfo: function() {
+      this.$elm.each(function() {
+        $(this).powerTip({placement: 'sw-alt'});
+      });
+    },
+    addListenerAcc: function() {
+      this.$elm.on('click', function() {
+        $(this).next().slideToggle();
+      });
+    }
+  };
+
   var FirstChild = function() {
     this.addFirstChild();
   };
@@ -290,6 +308,8 @@
 
     var accordion = new Accordion();
 
+    var part_label = new PartLabel();
+
     var first_child = new FirstChild();
 
     var ex_style = new ExStyle();
@@ -304,9 +324,6 @@
 
     var anchor = new AnchorManage();
 
-    $('.chk-label').each(function() {
-      $(this).powerTip({placement: 'sw-alt'});
-    });
   });
 
   /////
