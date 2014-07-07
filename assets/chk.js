@@ -2,6 +2,7 @@
 
   var LeftPanel = function() {
     this.$elm = $('#chk-leftpanel');
+    this.$body_elm = $('.mod-body');
     this.open_width = 230;
     this.close_width = 0;
     this.close();
@@ -19,7 +20,7 @@
     },
     addListenerClose: function() {
       var self = this;
-      $('.mod-body').on('click', function() {
+      this.$body_elm.on('click', function() {
         self.close();
       });
     }
@@ -27,6 +28,7 @@
 
   var Form = function() {
     this.$elm = $('form[name=settings]');
+    this.$submit_elm = $('.submit_btn');
     this.addListenerSubmit();
   };
   Form.prototype = {
@@ -39,7 +41,7 @@
       var form = document.createElement('form');
       $.each(param, function(idx, obj) {
         if(obj['value'].match(/\S/g)) {
-          var elm = document.createElement("input");
+          var elm = document.createElement('input');
           elm.name = obj['name'];
           elm.value = obj['value'];
           form.appendChild(elm);
@@ -51,7 +53,7 @@
     },
     addListenerSubmit: function() {
       var self = this;
-      $('.submit_btn').on('click', function() {
+      this.$submit_elm.on('click', function() {
         var param = self.getValue();
         var form = self.createForm(param);
         form.submit();
@@ -66,7 +68,7 @@
   Tab.prototype = {
     addListenerTab: function() {
       var self = this;
-      self.$elm.on('click', function() {
+      this.$elm.on('click', function() {
         $('.chk-panel').css('display', 'none');
         self.$elm.removeClass('on');
         var panel_id = '#' + $(this).attr('data-chk-tab');
@@ -77,13 +79,14 @@
   };
 
   var Accordion = function() {
+    this.$elm = $('.chk-accordion_h');
     this.addListenerAcc();
   };
   Accordion.prototype = {
     addListenerAcc: function() {
-      $('.chk-accordion_h').on('click', function() {
+      this.$elm.on('click', function() {
         $(this).next().slideToggle();
-        $(this).toggleClass("closed");
+        $(this).toggleClass('closed');
       });
     }
   };
@@ -118,13 +121,12 @@
   };
 
   var ExStyle = function() {
+    this.input_name = 'ex-style';
+    this.$input_elm = $('[name=' + this.input_name + ']');
     this.$elm = $('.chk-label');
     this.addListenerChange();
   };
   ExStyle.prototype = {
-    getSelectedValue: function() {
-      return $('[name=ex-style]:checked').val();
-    },
     removeExClass: function() {
       this.$elm.each(function() {
 				var obj = $(this).next('[data-parts-name]');
@@ -151,8 +153,8 @@
     },
     addListenerChange: function() {
       var self = this;
-      $('[name=ex-style]').on('change', function() {
-        var cls_name = self.getSelectedValue();
+      this.$input_elm.on('change', function() {
+        var cls_name = $('[name=' + self.input_name + ']:checked').val();
         self.removeExClass();
         self.addExClass(cls_name);
       });
@@ -176,9 +178,6 @@
       res = tmp.split(' none ')[0];
       return res;
     },
-    getSelectedValue: function() {
-      return $('[name=' + this.input_name + ']:checked').val();
-    },
     removeExClass: function() {
       var self = this;
       this.$parts_elm.each(function() {
@@ -186,46 +185,41 @@
       });
     },
     addExClass: function(cls_name) {
-      this.$parts_elm.each(function() {
-        $(this).addClass(cls_name);
-      });
+      if(cls_name !== 'none') {
+        this.$parts_elm.each(function() {
+          $(this).addClass(cls_name);
+        });
+      }
     },
     addListenerChange: function() {
       var self = this;
       this.$input_elm.on('change', function() {
-        var cls_name = self.getSelectedValue();
+        var value = $('[name=' + self.input_name + ']:checked').val();
         self.removeExClass();
-        if(cls_name !== 'none') {
-          self.addExClass(cls_name);
-        }
+        self.addExClass(value);
       });
     }
   };
 
   var AnchorManage = function() {
-    this.$elm_banner = $('[data-cms-editable="banner"]');
-    this.$elm_heading = $('[data-cms-editable="heading"]');
-    this.$elm_div_heading = $('div[data-cms-editable="heading"]');
-    this.$elm_table_td = $('[class*="mod-table"]').find('th, td');
-    this.$elm_text = $('[data-cms-editable="text"]');
-    this.$elm_wysiwyg_li = $('[data-cms-editable="wysiwyg"]').find('li');
-    this.$elm_wysiwyg_p = $('[data-cms-editable="wysiwyg"]').children('p');
+    this.$elm_banner = $('[data-cms-editable=banner]');
+    this.$elm_heading = $('[data-cms-editable=heading]');
+    this.$elm_div_heading = $('div[data-cms-editable=heading]');
+    this.$elm_table_td = $('[class*=mod-table]').find('th, td');
+    this.$elm_text = $('[data-cms-editable=text]');
+    this.$elm_wysiwyg_li = $('[data-cms-editable=wysiwyg]').find('li');
+    this.$elm_wysiwyg_p = $('[data-cms-editable=wysiwyg]').children('p');
     this.anchor_tag = '<a href="#" data-chk-anchormanage></a>';
     this.sapn_tag = '<span data-chk-anchormanage></span>';
     this.addListenerChange();
   };
   AnchorManage.prototype = {
-    getSelectedValue: function() {
-      return $('[name=anchor]:checked').val();
-    },
-    switchType: function(type) {
-      this.removeAnchorTag();
+    anchorType: function(type) {
       switch(type) {
         case 'link':
           this.addAnchorTag();
           break;
         case 'hover':
-          this.removeAnchorTag();
           this.addAnchorTag();
           this.makeHover();
           break;
@@ -233,7 +227,7 @@
     },
     addAnchorTag: function() {
       this.$elm_banner.wrap(this.anchor_tag);
-      this.$elm_banner.find('[data-cms-editable="text"]').children('a').wrapInner(this.sapn_tag).children('span').unwrap();
+      this.$elm_banner.find('[data-cms-editable=text]').children('a').wrapInner(this.sapn_tag).children('span').unwrap();
       this.$elm_heading.wrap(this.anchor_tag);
       this.$elm_div_heading.unwrap().find('.mod-h').wrap(this.anchor_tag);
       this.$elm_table_td.wrapInner(this.anchor_tag);
@@ -282,8 +276,32 @@
     addListenerChange: function() {
       var self = this;
       $('[name=anchor]').on('change', function() {
-        var value = self.getSelectedValue();
-        self.switchType(value);
+        var value = $('[name=anchor]:checked').val();
+        self.removeAnchorTag();
+        self.anchorType(value);
+      });
+    }
+  };
+
+  var switchableManage = function() {
+    this.input_name = 'switchable';
+    this.$input_elm = $('[name=' + this.input_name + ']');
+    this.$elm = $('[data-cms-switchable=false]');
+    this.addListenerChange();
+  };
+  switchableManage.prototype = {
+    switchable: function(sw_flg) {
+      if(sw_flg == 'true') {
+        this.$elm.css('display', 'none');
+      } else {
+        this.$elm.removeAttr('style');
+      }
+    },
+    addListenerChange: function() {
+      var self = this;
+      this.$input_elm.on('change', function() {
+        var value = $('[name=' + self.input_name + ']:checked').val();
+        self.switchable(value);
       });
     }
   };
@@ -324,6 +342,7 @@
 
     var anchor = new AnchorManage();
 
+    var switchable = new switchableManage();
   });
 
   /////
