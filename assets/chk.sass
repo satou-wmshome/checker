@@ -30,6 +30,11 @@ body
     font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
     cursor: pointer
     box-sizing: border-box
+    &:hover path
+      fill: #ffffff
+    svg
+      position: relative
+      top: 11px
   .chk-label
     color: #333333
     font-size: 12px
@@ -53,6 +58,16 @@ body
   *
     box-sizing: border-box
     font-family: "Droid Sans Mono", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+  .chk-pushpin
+    text-align: right
+    padding: 7px
+    margin-bottom: -20px
+    &.hold path
+      fill: #ffffff
+    svg
+      cursor: pointer
+      &:hover path
+        fill: #ffffff
   // PCのみ
   .chk-pc &
     position: fixed

@@ -58,7 +58,13 @@
   <div id="chk-leftpanel" class="snap-drawers">
     <div class="snap-drawer snap-drawer-left">
       <% if(mobile_flg,==,false) %>
-        <div>close</div>
+        <!--div>close</div-->
+        <div class="chk-pushpin">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32">
+            <g></g>
+            <path d="M17 0l-3 3 3 3-7 8h-7l5.5 5.5-8.5 11.269v1.231h1.231l11.269-8.5 5.5 5.5v-7l8-7 3 3 3-3-15-15zM14 17l-2-2 7-7 2 2-7 7z" fill="#999999"></path>
+          </svg>
+        </div>
       <% /if %>
       <ul class="chk-tabs">
         <li class="chk-tab-ex on" data-chk-tab="chk-ex_panel">EX</li><li class="chk-tab-param" data-chk-tab="chk-param_panel">Settings</li>
@@ -220,7 +226,12 @@
   </div>
 
   <div id="chk-content" class="snap-content">
-    <div class="chk-button"></div>
+    <div class="chk-button">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32">
+        <g></g>
+        <path d="M0 0h8v8h-8zM12 2h20v4h-20zM0 12h8v8h-8zM12 14h20v4h-20zM0 24h8v8h-8zM12 26h20v4h-20z" fill="#999999"></path>
+      </svg>
+    </div>
     <div class="mod-body">
 			<% echo(html) %>
       <% if(media,==,"pc") %>

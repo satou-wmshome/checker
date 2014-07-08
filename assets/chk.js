@@ -3,10 +3,12 @@
   var LeftPanel = function() {
     this.$elm = $('#chk-leftpanel');
     this.$body_elm = $('.mod-body');
+    this.$pushpin_elm = $('.chk-pushpin');
     this.open_width = 230;
     this.close_width = 0;
     this.close();
     this.addListenerClose();
+    this.addListenerHold();
   };
   LeftPanel.prototype = {
     open: function() {
@@ -21,7 +23,15 @@
     addListenerClose: function() {
       var self = this;
       this.$body_elm.on('click', function() {
-        self.close();
+        if(self.$pushpin_elm.attr('class').indexOf('hold') < 0) {
+          self.close();
+        }
+      });
+    },
+    addListenerHold: function() {
+      var self = this;
+      this.$pushpin_elm.children('svg').on('click', function() {
+        self.$pushpin_elm.toggleClass('hold');
       });
     }
   };
