@@ -102,9 +102,12 @@
   };
 
   var PartLabel = function() {
+    this.input_name = 'partLabel';
+    this.$input_elm = $('[name=' + this.input_name + ']');
     this.$elm = $('.chk-label');
     this.partInfo();
     this.addListenerAcc();
+    this.addListenerChange();
   };
   PartLabel.prototype = {
     partInfo: function() {
@@ -112,9 +115,23 @@
         $(this).powerTip({placement: 'sw-alt'});
       });
     },
+    labelDisplay: function(label_flg) {
+      if(label_flg != 'true') {
+        this.$elm.css('display', 'none');
+      } else {
+        this.$elm.removeAttr('style');
+      }
+    },
     addListenerAcc: function() {
       this.$elm.on('click', function() {
         $(this).next().slideToggle();
+      });
+    },
+    addListenerChange: function() {
+      var self = this;
+      this.$input_elm.on('change', function() {
+        var value = $('[name=' + self.input_name + ']:checked').val();
+        self.labelDisplay(value);
       });
     }
   };
@@ -338,7 +355,7 @@
       this.$elm = $('[data-cms-switchable=false]');
     },
     switchable: function(sw_flg) {
-      if(sw_flg == 'true') {
+      if(sw_flg != 'true') {
         this.$elm.css('display', 'none');
       } else {
         this.$elm.removeAttr('style');

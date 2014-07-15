@@ -64,8 +64,6 @@
 				}
 				$variation_id = trim( $variation_id );
 
-				$label_display = true ? "block" : "none";
-
 				$dir = "";
 				foreach ( $val[ "json_data" ][ "dir" ] as $dir_name ) {
 					$dir .= $dir_name. ", ";
@@ -78,12 +76,11 @@
 										);
 
 				$label = "";
-				$label = sprintf( "<span class=\"chk-label\" data-chk-label-name=\"%s\" data-chk-default-ex=\"%s\" data-chk-variation=\"%s\" %s style=\"display:%s\">[%s] %s</span>\n",
+				$label = sprintf( "<span class=\"chk-label\" data-chk-label-name=\"%s\" data-chk-default-ex=\"%s\" data-chk-variation=\"%s\" %s>[%s] %s</span>\n",
 													$data_parts_name,
 													$default_cls,
 													$variation_id,
 													$tip_data,
-													$label_display,
 													$data_parts_name,
 													$val[ "json_data" ][ "name" ]
 												);

@@ -232,29 +232,33 @@ body {
 #chk-ex_panel .chk-ex-style li.clear {
   clear: left;
 }
+/* line 174, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+#chk-ex_panel #chk-rtefs {
+  margin-right: 3px;
+}
 
-/* line 176, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 178, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel {
   display: none;
 }
-/* line 178, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 180, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel .chk-select-parts-method {
   margin: 0 0 10px;
 }
-/* line 181, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 183, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel .chk-select-parts-area li {
   margin: 0 0 5px;
 }
-/* line 183, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 185, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel .chk-select-parts-area li:last-child {
   margin: 0;
 }
-/* line 185, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 187, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel .chk-select-parts-area label {
   width: 55px;
   display: inline-block;
 }
-/* line 188, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 190, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #chk-param_panel .submit_btn {
   color: white;
   font-size: 12px;
@@ -267,7 +271,7 @@ body {
   display: block;
 }
 
-/* line 199, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
+/* line 201, C:/Users/satou.AKIBARE/Share/checker/assets/chk.sass */
 #powerTip {
   font-size: 12px;
   line-height: 1.5;
