@@ -360,7 +360,10 @@
       } else {
         this.$elm.removeAttr('style');
       }
-      $.heighter();
+      if(!$('head').children('meta[name=viewport]')[0]) {
+        console.log('pc');
+        $.heighter();
+      }
     },
     firstChildControl: function() {
       this.first_child.setElement();

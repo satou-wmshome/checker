@@ -211,8 +211,8 @@
             <h3>Select Parts</h3>
             <div>
               <ul class="chk-select-parts-method">
-                <li><span title="表示する部品を個別で選択できます。2つ以上の場合は,(カンマ)で区切り[e.g. 5,10,55,100]"><input type="radio" id="extraction" name="selectmethod" value="e" <% if(get_selectmethod,==,"e") %>checked<% /if %>/><label for="extraction">個別選択</label></span></li>
-                <li><span title="表示する部品を部品番号の範囲指定で選択できます。-(ハイフン)で指定[e.g. 10-100]"><input type="radio" id="range" name="selectmethod" value="r" <% if(get_selectmethod,==,"r") %>checked<% /if %> /><label for="range">範囲選択</label></span></li>
+                <li><span title="表示する部品を個別で選択できます。2つ以上の場合は,(カンマ)で区切る[e.g. 5,10,55,100]"><input type="radio" id="extraction" name="selectmethod" value="e" <% if(get_selectmethod,==,"e") %>checked<% /if %>/><label for="extraction">個別選択</label></span></li>
+                <li><span title="表示する部品を部品番号の範囲指定で選択できます。範囲を-(ハイフン)で指定する[e.g. 10-100]"><input type="radio" id="range" name="selectmethod" value="r" <% if(get_selectmethod,==,"r") %>checked<% /if %> /><label for="range">範囲選択</label></span></li>
               </ul>
               <ul class="chk-select-parts-area">
                 <li><label for="header">Header</label><input type="text" name="header" size="10" value="<% echo(get_header) %>" /></li>
@@ -247,6 +247,9 @@
             </p>
           </div>
         </div>
+      <% else %>
+        <div class="mod-sp-backto"><a href="#top"><span>ページトップに戻る</span></a></div>
+        <div class="mod-sp-viewchange"><a href="#">パソコン</a>｜モバイル</div>
       <% /if %>
     </div>
   </div>
