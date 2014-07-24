@@ -361,7 +361,6 @@
         this.$elm.removeAttr('style');
       }
       if(!$('head').children('meta[name=viewport]')[0]) {
-        console.log('pc');
         $.heighter();
       }
     },
@@ -380,13 +379,14 @@
     }
   };
 
-  var StepManage = function(switchable, ex_align, anchor, rte_fs_change) {
+  var StepManage = function(switchable, ex_align, anchor, rte_fs_change, code_in_modhtml) {
     this.input_name = 'flowstep';
     this.$input_elm = $('[name=' + this.input_name + ']');
     this.$elm = $('[data-cms-part=step]');
     this.switchable = switchable;
     this.ex_align = ex_align;
     this.anchor = anchor;
+    this.code_in_modhtml = code_in_modhtml;
     this.rte_fs_change = rte_fs_change;
     this.addListenerChange();
   };
@@ -420,6 +420,11 @@
       this.anchor.removeAnchorTag();
       this.anchor.anchorType(value);
     },
+    InsCodeInModHtmlControl: function() {
+      var value = $('[name=' + this.code_in_modhtml.input_name + ']:checked').val();
+      this.code_in_modhtml.setElement();
+      this.code_in_modhtml.insHtmlCode(value);
+    },
     rteFsChangeControl: function() {
       var value = $('[name=' + this.rte_fs_change.input_name + ']').val();
       this.rte_fs_change.setElement();
@@ -434,7 +439,91 @@
         self.switchableControl();
         self.exAlignControl();
         self.anchorControl();
+        self.InsCodeInModHtmlControl();
         self.rteFsChangeControl();
+      });
+    }
+  };
+
+  var InsCodeInModHtml = function() {
+    this.input_name = 'inscode';
+    this.$input_elm = $('[name=' + this.input_name + ']');
+    this.$elm_mod_html;
+    this.$elm_mod_html3;
+    this.$elm_mod_html4;
+    this.$elm_mod_html5;
+    this.$elm_mod_html6;
+    this.$elm_mod_html_spec;
+    this.$elm_mod_html_header;
+    this.$elm_mod_html_map;
+    this.$elm_mod_html_map_side;
+    this.$elm_mod_html_map_footer;
+    this.default_html_code = 'Sample Text';
+    this.like_box_code = '<div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";  fjs.parentNode.insertBefore(js, fjs);}(document, \'script\', \'facebook-jssdk\'));\x3C/script><div class="fb-like-box" data-href="https://www.facebook.com/FacebookDevelopers" data-width="200px" data-height="200px" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>';
+    this.google_map_new_code = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14277.513628556419!2d127.93562340926832!3d26.540108840217407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e501cd2b1d83bf%3A0x2cd604c0556844b8!2z44OW44K744OK5rW35Lit5YWs5ZySIOa1t-S4reWxleacm-WhlA!5e0!3m2!1sja!2sjp!4v1397036515043" width="1000" height="450" frameborder="0" style="border:0"></iframe>';
+    this.google_map_old_code = '<iframe width="1000" height="215" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.jp/maps?q=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E7%B7%91%E5%8C%BA%E6%9C%89%E6%9D%BE%E4%B8%89%E4%B8%81%E5%B1%B1331-1&amp;ie=UTF8&amp;hq=&amp;hnear=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E7%B7%91%E5%8C%BA%E6%9C%89%E6%9D%BE%E7%94%BA%E5%A4%A7%E5%AD%97%E6%9C%89%E6%9D%BE%E4%B8%89%E4%B8%81%E5%B1%B1%EF%BC%93%EF%BC%93%EF%BC%91%E2%88%92%EF%BC%91&amp;gl=jp&amp;t=m&amp;brcurrent=3,0x60037cda118a1193:0xdabe736d37ebad69,0&amp;ll=35.062671,136.966896&amp;spn=0.021076,0.038538&amp;z=14&amp;iwloc=A&amp;output=embed&amp;iwloc=B"></iframe><br><small><a href="https://maps.google.co.jp/maps?q=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E7%B7%91%E5%8C%BA%E6%9C%89%E6%9D%BE%E4%B8%89%E4%B8%81%E5%B1%B1331-1&amp;ie=UTF8&amp;hq=&amp;hnear=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E7%B7%91%E5%8C%BA%E6%9C%89%E6%9D%BE%E7%94%BA%E5%A4%A7%E5%AD%97%E6%9C%89%E6%9D%BE%E4%B8%89%E4%B8%81%E5%B1%B1%EF%BC%93%EF%BC%93%EF%BC%91%E2%88%92%EF%BC%91&amp;gl=jp&amp;t=m&amp;brcurrent=3,0x60037cda118a1193:0xdabe736d37ebad69,0&amp;ll=35.062671,136.966896&amp;spn=0.021076,0.038538&amp;z=14&amp;iwloc=A&amp;source=embed" style="text-align:left">大きな地図で見る</a></small>';
+    this.slide_animation_code = '<div id="swf_wrapper" style="margin: 0px; padding: 0px; border: none; overflow: hidden; background: white url(https://home.douga-hp.jp/images/ajax-loader2.gif?1386132879) no-repeat 50% 50% !important; text-align: center; width: 978px; height: 370px; min-height: 370px;"><object type="application/x-shockwave-flash" data="https://home.douga-hp.jp/movies/6833.swf?1383045492" width="978" height="370" id="b4cm_missing_6833" style="visibility: visible;"></object></div>';
+    this.youtube_code = '<iframe width="1000" height="315" src="//www.youtube.com/embed/go43XeW6Wg4" frameborder="0" allowfullscreen></iframe>';
+    this.youtube2_code = '<iframe width="1000" height="315" src="//www.youtube.com/embed/0cbEU0BZL9c" frameborder="0" allowfullscreen></iframe>';
+    this.setElement();
+    this.addListenerChange();
+    this.insHtmlCode(true);
+  };
+  InsCodeInModHtml.prototype = {
+    setElement: function() {
+      this.$elm_mod_html = $('.mod-html');
+      this.$elm_mod_html3 = $('.mod-html3');
+      this.$elm_mod_html4 = $('.mod-html4');
+      this.$elm_mod_html5 = $('.mod-html5');
+      this.$elm_mod_html6 = $('.mod-html6');
+      this.$elm_mod_html_spec = $('.mod-html-spec');
+      this.$elm_mod_html_header = $('.mod-html-header');
+      this.$elm_mod_html_map = $('.mod-html-map');
+      this.$elm_mod_html_map_side = $('.mod-html-map-side');
+      this.$elm_mod_html_map_footer = $('.mod-html-footer');
+    },
+    insHtmlCode: function(flg) {
+      this.$elm_mod_html.html(this.$elm_mod_html.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html3.html(this.$elm_mod_html3.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html4.html(this.$elm_mod_html4.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html5.html(this.$elm_mod_html5.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html6.html(this.$elm_mod_html6.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html_spec.html(this.$elm_mod_html_spec.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html_map.html(this.$elm_mod_html_map.attr('class') + ' ' + this.default_html_code);
+      this.$elm_mod_html_map_side.html(this.$elm_mod_html_map_side.attr('class') + ' ' + this.default_html_code);
+      if(!flg) {
+        return true;
+      }
+      if(this.$elm_mod_html[0]) {
+        this.$elm_mod_html.html(this.youtube_code);
+      }
+      if(this.$elm_mod_html3[0]) {
+        this.$elm_mod_html3.html(this.youtube2_code);
+      }
+      if(this.$elm_mod_html4[0]) {
+        this.$elm_mod_html4.html(this.google_map_old_code);
+      }
+      if(this.$elm_mod_html5[0]) {
+        this.$elm_mod_html5.html(this.google_map_new_code);
+      }
+      if(this.$elm_mod_html6[0]) {
+        this.$elm_mod_html6.html(this.google_map_old_code);
+      }
+      if(this.$elm_mod_html_spec[0]) {
+        this.$elm_mod_html_spec.html(this.slide_animation_code);
+      }
+      if(this.$elm_mod_html_map[0]) {
+        this.$elm_mod_html_map.html(this.google_map_old_code);
+      }
+      if(this.$elm_mod_html_map_side[0]) {
+        this.$elm_mod_html_map_side.html(this.google_map_old_code);
+      }
+    },
+    addListenerChange: function() {
+      var self = this;
+      this.$input_elm.on('change', function() {
+        var value = $('[name=' + self.input_name + ']:checked').val();
+        self.insHtmlCode(value);
       });
     }
   };
@@ -509,8 +598,9 @@
     var ex_align = new ExOthersStyle('ex-align', '[data-cms-editable-heading]');
     var anchor = new AnchorManage();
     var switchable = new SwitchableManage(first_child);
+    var code_in_modhtml = new InsCodeInModHtml();
     var rte_fs_change = new RTEFontSizeChange();
-    var flowstep = new StepManage(switchable, ex_align, anchor, rte_fs_change);
+    var flowstep = new StepManage(switchable, ex_align, anchor, rte_fs_change, code_in_modhtml);
 
   });
 
