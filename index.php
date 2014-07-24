@@ -20,15 +20,15 @@
 	$out[ "layout_css" ] = $theme->layoutCssPath();
 	$out[ "mod_css" ] = $theme->modCssPath();
 
-	$out[ "get_media" ] = $_GET[ "media" ];
-	$out[ "get_theme" ] = $_GET[ "theme" ];
-	$out[ "get_parts" ] = $_GET[ "parts" ];
-	$out[ "get_keyword" ] = $_GET[ "keyword" ];
-	$out[ "get_selectmethod" ]= $_GET[ "selectmethod" ];
-	$out[ "get_header" ] = $_GET[ "header" ];
-	$out[ "get_main" ] = $_GET[ "main" ];
-	$out[ "get_sub" ] = $_GET[ "sub" ];
-	$out[ "get_footer" ] = $_GET[ "footer" ];
+	$out[ "get_media" ] = ( isset( $_GET[ "media" ] ) ) ? $_GET[ "media" ] : null;
+	$out[ "get_theme" ] = ( isset( $_GET[ "theme" ] ) ) ? $_GET[ "theme" ] : null;
+	$out[ "get_parts" ] = ( isset( $_GET[ "parts" ] ) ) ? $_GET[ "parts" ] : null;
+	$out[ "get_keyword" ] = ( isset( $_GET[ "keyword" ] ) ) ? $_GET[ "keyword" ] : null;
+	$out[ "get_selectmethod" ] = ( isset( $_GET[ "selectmethod" ] ) ) ? $_GET[ "selectmethod" ] : null;
+	$out[ "get_header" ] = ( isset( $_GET[ "header" ] ) ) ? $_GET[ "header" ] : null;
+	$out[ "get_main" ] = ( isset( $_GET[ "main" ] ) ) ? $_GET[ "main" ] : null;
+	$out[ "get_sub" ] = ( isset( $_GET[ "sub" ] ) ) ? $_GET[ "sub" ] : null;
+	$out[ "get_footer" ] = ( isset( $_GET[ "footer" ] ) ) ? $_GET[ "footer" ] : null;
 
 	$area_array = array( "header", "main", "sub", "footer" );
 	$html = str_get_html( file_get_contents( $theme->layoutTextInternalPath() ) );
