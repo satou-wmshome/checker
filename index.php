@@ -2,11 +2,11 @@
 	$debug = ( !isset( $_GET[ "debug" ] ) ) ? false : true;
 	define( "DEBUG", $debug );
 
-  include_once( "Skinny.php" );
-	require_once( "./assets/Mobile_Detect.php" );
-	require_once( "./assets/simple_html_dom.php" );
-	require_once( "./assets/theme.php" );
-	require_once( "./assets/part.php" );
+  include_once( "./assets/php/Skinny.php" );
+	require_once( "./assets/php/Mobile_Detect.php" );
+	require_once( "./assets/php/simple_html_dom.php" );
+	require_once( "./assets/php/theme.php" );
+	require_once( "./assets/php/part.php" );
 
 	$out = array();
 
